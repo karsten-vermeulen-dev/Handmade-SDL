@@ -1,7 +1,8 @@
-
+.vs/
 Debug/
 Release/
 Handmade/Debug/
 Handmade/Release/
+CMakeFiles
 
-.vs/
+
