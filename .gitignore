@@ -3,16 +3,12 @@ Debug/
 Release/
 Handmade/Debug/
 Handmade/Release/
-CMakeFiles
 
-
-
-Handmade.sln
-
+CMakeFiles/
 CMakeCache.txt
-
+cmake_install.cmake
+Handmade.sln
 *.vcxproj
-
 *.filters
 
-cmake_install.cmake
+
