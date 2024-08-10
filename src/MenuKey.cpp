@@ -86,7 +86,7 @@ void MenuKey::SetMenuText(Index index, const std::string& text)
 {
 	menuItems[static_cast<int>(index)].SetFont("MenuFont");
 	menuItems[static_cast<int>(index)].SetString(text);
-	menuItems[static_cast<int>(index)].SetSize(text.size() * charDimension.x, charDimension.y);
+	menuItems[static_cast<int>(index)].SetSize(static_cast<int>(text.size()) * charDimension.x, charDimension.y);
 	menuItems[static_cast<int>(index)].SetColor(inactiveColor.r, inactiveColor.g, inactiveColor.b);
 }
 //======================================================================================================
@@ -157,7 +157,7 @@ bool MenuKey::Render()
 	//Loop through all menu items and position them based on the x and y positional origin
 	//Check what menu style is set so that we can determine where on-screen to render the text
 
-	for (size_t i = 0; i < menuItems.size(); i++)
+	for (int i = 0; i < menuItems.size(); i++)
 	{
 		if (alignment == Alignment::Centre || alignment == Alignment::Bottom)
 		{

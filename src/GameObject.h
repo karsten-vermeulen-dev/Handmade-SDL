@@ -43,7 +43,7 @@ protected:
 	bool isVisible{ true };
 
 	std::string tag;
-	SDL_Point position;
-	SDL_Point dimension;
+	SDL_Point position{ 0, 0 };
+	SDL_Point dimension{ 0, 0 };
 
 };
