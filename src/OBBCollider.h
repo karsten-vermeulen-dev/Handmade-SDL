@@ -3,6 +3,8 @@
 #include "BoxCollider.h"
 #include "Vector.h"
 
+#define NOMINMAX
+
 class OBBCollider
 {
 
