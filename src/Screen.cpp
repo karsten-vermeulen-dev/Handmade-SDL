@@ -1,4 +1,4 @@
-#include "SDL/SDL_syswm.h"
+#include <SDL_syswm.h>
 #include "Screen.h"
 #include "Utility.h"
 

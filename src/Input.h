@@ -273,7 +273,7 @@
 #define HM_MOUSE_MIDDLE 2
 #define HM_MOUSE_RIGHT 4
 
-#include "SDL/SDL.h"
+#include <SDL.h>
 
 class Input
 {

@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <assert.h>
-#include "SDL/SDL_image.h"
+#include <SDL_image.h>
 #include "Screen.h"
 #include "Texture.h"
 #include "Utility.h"

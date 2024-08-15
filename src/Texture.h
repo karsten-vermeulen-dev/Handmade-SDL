@@ -2,7 +2,7 @@
 #include <map>
 #include <memory>
 #include <string>
-#include "SDL/SDL_render.h"
+#include <SDL_render.h>
 
 typedef std::map<std::string, SDL_Texture*> Textures;
 

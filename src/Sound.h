@@ -2,7 +2,7 @@
 #include <map>
 #include <memory>
 #include <string>
-#include "SDL/SDL_mixer.h"
+#include <SDL_mixer.h>
 
 typedef std::map<std::string, Mix_Chunk*> Sounds;
 

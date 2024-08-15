@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "SDL/SDL.h"
+#include <SDL.h>
 
 class GameObject
 {

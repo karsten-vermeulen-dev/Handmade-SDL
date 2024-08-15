@@ -1,5 +1,4 @@
 #pragma once
-
 #include "BoxCollider.h"
 #include "GameObject.h"
 #include "Sound.h"
