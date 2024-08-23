@@ -1,6 +1,6 @@
 # Handmade _SDL_
 
-_Handmade SDL_ is a humble **C++** game engine framework wrapped around the popular and cross-platform **Simple DirectMedia Layer** library. It was designed as a teaching tool, allowing students and aspiring game programmers to make simple 2D sprite-based games while learning intermediate and advanced C++ concepts. The engine can load images, render animations, play audio, display text, and handle basic collisions. This game engine currently only supports Windows 10. If you wish to use the engine in a MacOS or Linux environment, you will need to link the appropriate library files. If you're comfortable to build for Windows only, read on.
+_Handmade SDL_ is a humble **C++** game engine framework wrapped around the popular and cross-platform **Simple DirectMedia Layer** library. It was designed as a teaching tool, allowing students and aspiring game programmers to make simple 2D sprite-based games while learning intermediate and advanced C++ concepts. The engine can load images, render animations, play audio, display text, and handle basic collisions. It only supports Windows 10 but if you wish to use the engine in a MacOS or Linux environment, you will need to link the appropriate library files. If you're comfortable to build for Windows only, read on.
 
 # Building the source
 
