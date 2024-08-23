@@ -21,3 +21,11 @@ Below is a table detailing the folders within the repo and what they store withi
 | lib           | Stores the SDL 2.0 .lib files which CMake automatically links to the project when generating the solution files      |   
 | Logo          | The image files for the _Handmade_ logo      | 
 | src           | Stores the complete source code of the game engine. Within this is a subfolder called _SDL_, which stores all of the headers for the SDL library. These headers are automatically hooked into the engine by CMake    | 
+
+<br> 
+
+---
+
+<br>
+
+<p align="center"><img src=https://github.com/karsten-vermeulen-dev/Handmade-SDL/blob/main/Logo/Logo.png width=250 height=250></p>
