@@ -1,5 +1,9 @@
+#include <imgui.h>
+#include <imgui_impl_sdl2.h>
+#include <imgui_impl_sdlrenderer2.h>
 #include "StartState.h"
 #include "PlayState.h"
+#include "Screen.h"
 
 //======================================================================================================
 bool StartState::OnEnter()
@@ -36,6 +40,20 @@ bool StartState::Render()
 {
 	image.Render();
 	menu->Render();
+
+	//==============================================================================
+	//ImGUI UI (WIP)
+	//==============================================================================
+
+	ImGui_ImplSDLRenderer2_NewFrame();
+	ImGui_ImplSDL2_NewFrame();
+	ImGui::NewFrame();
+	
+	//...
+
+	ImGui::Render();
+	ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), Screen::Instance()->GetRenderer());
+
 	return true;
 }
 //======================================================================================================

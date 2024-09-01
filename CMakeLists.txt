@@ -50,11 +50,19 @@ ${CMAKE_SOURCE_DIR}/src/SphereCollider.cpp
 ${CMAKE_SOURCE_DIR}/src/StartState.cpp
 ${CMAKE_SOURCE_DIR}/src/Text.cpp
 ${CMAKE_SOURCE_DIR}/src/Texture.cpp
-${CMAKE_SOURCE_DIR}/src/Utility.cpp)
+${CMAKE_SOURCE_DIR}/src/Utility.cpp
+${CMAKE_SOURCE_DIR}/src/imgui/imgui.cpp
+${CMAKE_SOURCE_DIR}/src/imgui/imgui_demo.cpp
+${CMAKE_SOURCE_DIR}/src/imgui/imgui_draw.cpp
+${CMAKE_SOURCE_DIR}/src/imgui/imgui_impl_sdl2.cpp
+${CMAKE_SOURCE_DIR}/src/imgui/imgui_impl_sdlrenderer2.cpp
+${CMAKE_SOURCE_DIR}/src/imgui/imgui_tables.cpp
+${CMAKE_SOURCE_DIR}/src/imgui/imgui_widgets.cpp)
 
 add_executable(Handmade ${SOURCE_FILES} ${INCLUDE_FILES})
 
 target_include_directories(Handmade PRIVATE ${CMAKE_SOURCE_DIR}/src/SDL)
+target_include_directories(Handmade PRIVATE ${CMAKE_SOURCE_DIR}/src/imgui)
 
 target_link_libraries(Handmade 
 ${CMAKE_SOURCE_DIR}/lib/SDL2.lib 
@@ -110,6 +118,13 @@ source_group("Source Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/EndState.cp
 source_group("Source Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/GameState.cpp)
 source_group("Source Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/PlayState.cpp)
 source_group("Source Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/StartState.cpp)
+source_group("Source Files/imgui" FILES ${CMAKE_SOURCE_DIR}/src/imgui/imgui.cpp)
+source_group("Source Files/imgui" FILES ${CMAKE_SOURCE_DIR}/src/imgui/imgui_demo.cpp)
+source_group("Source Files/imgui" FILES ${CMAKE_SOURCE_DIR}/src/imgui/imgui_draw.cpp)
+source_group("Source Files/imgui" FILES ${CMAKE_SOURCE_DIR}/src/imgui/imgui_impl_sdl2.cpp)
+source_group("Source Files/imgui" FILES ${CMAKE_SOURCE_DIR}/src/imgui/imgui_impl_sdlrenderer2.cpp)
+source_group("Source Files/imgui" FILES ${CMAKE_SOURCE_DIR}/src/imgui/imgui_tables.cpp)
+source_group("Source Files/imgui" FILES ${CMAKE_SOURCE_DIR}/src/imgui/imgui_widgets.cpp)
 
 add_custom_command(TARGET Handmade POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory
 ${CMAKE_SOURCE_DIR}/bin 

@@ -1,4 +1,7 @@
 #include <SDL_syswm.h>
+#include <imgui.h>
+#include <imgui_impl_sdl2.h>
+#include <imgui_impl_sdlrenderer2.h>
 #include "Screen.h"
 #include "Utility.h"
 
@@ -82,6 +85,10 @@ bool Screen::Initialize(const std::string& windowTitle, int width, int height, b
 	this->width = width;
 	this->height = height;
 
+	ImGui::CreateContext();
+	ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
+	ImGui_ImplSDLRenderer2_Init(renderer);
+	
 	return true;
 }
 //======================================================================================================
@@ -97,6 +104,10 @@ void Screen::Present()
 //======================================================================================================
 void Screen::Shutdown()
 {
+	ImGui_ImplSDLRenderer2_Shutdown();
+	ImGui_ImplSDL2_Shutdown();
+	ImGui::DestroyContext();
+
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
