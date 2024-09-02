@@ -37,6 +37,8 @@ Below is another table detailing the folders within the CMake build folder after
 | Handmade.dir  | Stores the **Debug** and/or **Release** folders for Visual Studio's build files |
 | x64           | More Visual Studio build files with **Debug** and/or **Release** folders within |
 
+**Note**: If the _Debug_, _Release_, _Handmade.dir_, and/or _x64_ folders become too cluttered, you can safely delete them. They will regenerate automatically when re-compiling the project in Visual Studio.
+
 <br> 
 
 ---
