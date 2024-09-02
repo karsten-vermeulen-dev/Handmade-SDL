@@ -20,7 +20,7 @@ Below is a table detailing the folders within the repo and what they store withi
 | bin           | Keeps the SDL 2.0 .dll files which are copied to the appropriate build folders when compiling the engine      |  
 | lib           | Stores the SDL 2.0 .lib files which CMake automatically links to the project when generating the solution files      |   
 | Logo          | The image files for the _Handmade_ logo      | 
-| src           | Stores the complete source code of the game engine. Within this is a subfolder called _SDL_, which stores all of the headers for the SDL library. These headers are automatically hooked into the engine by CMake    | 
+| src           | Stores the complete source code of the game engine. Within this folder are two subfolders which store further source code for the _SDL_ and _imgui_ libraries. All of this source code is automatically hooked into the engine by CMake  | 
 
 <br> 
 
