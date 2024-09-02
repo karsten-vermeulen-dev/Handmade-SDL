@@ -16,7 +16,7 @@ Every bit of robust software out there isn’t complete without the proper docum
 
 # Folder structure
 
-Below is a table detailing the folders within the repo and what they store within.
+Below is a table detailing the folders within the repo before building them with CMake.
 
 | Folder        | Use           | 
 | ------------- | --------------| 
@@ -25,6 +25,17 @@ Below is a table detailing the folders within the repo and what they store withi
 | lib           | Stores the SDL 2.0 .lib files which CMake automatically links to the project when generating the solution files      |   
 | Logo          | The image files for the _Handmade_ logo      | 
 | src           | Stores the complete source code of the game engine. Within this folder are two subfolders which store further source code for the _SDL_ and _imgui_ libraries. All of this source code is automatically hooked into the engine by CMake  | 
+
+Below is another table detailing the folders within the CMake build folder after Visual Studio compilation.
+
+| Folder        | Use           | 
+| ------------- | --------------| 
+| Assets        | Stores all the fonts, sounds, music, image backgrounds, and sprite sheets that you can use to build your first demo. (Copied over by CMake if source and build folders are different) |
+| CMakeFiles    | Keeps the relevant CMake files and folders after creating a CMake buid folder |
+| Debug         | After compiling the Visual Studio project in **Debug** mode, this folder is generated and contains the executable **Handmade.exe** file which you can run as-is within Windows. The relevant _Assets_ folder and .dll files will have been copied here by CMake |
+| Release       | Same as the **Debug** folder, only this folder is created when the project is compiled in **Release** mode within Visual Studio. Ideally, this is the folder you use when shipping your final game |
+| Handmade.dir  | Stores the **Debug** and/or **Release** folders for Visual Studio's build files |
+| x64           | More Visual Studio build files with **Debug** and/or **Release** folders within |
 
 <br> 
 
