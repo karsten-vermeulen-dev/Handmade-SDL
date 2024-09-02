@@ -12,9 +12,10 @@ public:
 
 	HWND GetWindowHandle();
 	SDL_Window* GetWindow();
-	SDL_Point GetResolution();
 	SDL_Renderer* GetRenderer();
 
+	const SDL_Point& GetResolution();
+	
 	void SetMousePosition(int x, int y);
 	void SetClearColor(Uint8 r, Uint8 g, Uint8 b);
 
@@ -33,8 +34,7 @@ private:
 	Screen(const Screen&);
 	Screen& operator=(const Screen&);
 
-	int width{ 0 };
-	int height{ 0 };
+	SDL_Point resolution{ 0 };
 
 	HWND windowHandle{ nullptr };
 	SDL_Window* window{ nullptr };

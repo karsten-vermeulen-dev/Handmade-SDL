@@ -27,9 +27,9 @@ SDL_Renderer* Screen::GetRenderer()
 	return renderer;
 }
 //======================================================================================================
-SDL_Point Screen::GetResolution()
+const SDL_Point& Screen::GetResolution()
 {
-	return SDL_Point{ width, height };
+	return resolution;
 }
 //======================================================================================================
 void Screen::SetMousePosition(int x, int y)
@@ -82,8 +82,7 @@ bool Screen::Initialize(const std::string& windowTitle, int width, int height, b
 	SDL_GetWindowWMInfo(window, &systemInfo);
 	windowHandle = systemInfo.info.win.window;
 
-	this->width = width;
-	this->height = height;
+	resolution = { width, height };
 
 	ImGui::CreateContext();
 	ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
