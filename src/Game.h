@@ -16,18 +16,12 @@ public:
 		int screenHeight,
 		bool fullscreen = false);
 
-	void AddState(GameState* state);
-	void ChangeState(GameState* state);
-
 	bool Run();
 	void Shutdown();
 
 private:
 
-	void RemoveState();
-
 	int deltaTime{ 0 };
-	//std::deque<GameState*> m_gameStates;
 	std::unique_ptr<GameState> gameState;
 
 };

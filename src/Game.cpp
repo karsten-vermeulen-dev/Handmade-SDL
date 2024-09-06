@@ -36,30 +36,12 @@ bool Game::Initialize(const std::string& name, int screenWidth, int screenHeight
 	return true;
 }
 //======================================================================================================
-void Game::AddState(GameState* state)
-{
-	//TODO - Fix this later
-	//state->OnEnter();
-	//gameStates.push_front(state);
-}
-//======================================================================================================
-void Game::ChangeState(GameState* state)
-{
-	//TODO - Fix this later
-	//state->OnEnter();
-	//gameStates.push_back(state);
-}
-//======================================================================================================
 bool Game::Run()
 {
 	gameState->OnEnter();
 
 	while (gameState)
 	{
-		//TODO - Fix this later
-		//The current active state is always the front one
-		//state = gameStates.front();
-
 		int startTime = SDL_GetTicks();
 
 		Screen::Instance()->Clear();
@@ -83,19 +65,7 @@ bool Game::Run()
 		}
 
 		deltaTime = SDL_GetTicks() - startTime;
-
-		//TODO - Fix this later
-		//The main game loop will run as long there are game states available
-		//endGame = gameStates.empty();
 	}
-
-	//TODO - Fix this later
-	//If game state is also flagged as dead  
-	//then completely remove all of its objects
-	/*if (!state->IsAlive())
-	{
-		RemoveState();
-	}*/
 
 	return true;
 }
@@ -105,12 +75,4 @@ void Game::Shutdown()
 	Text::Shutdown();
 	Music::Shutdown();
 	Screen::Instance()->Shutdown();
-}
-//======================================================================================================
-void Game::RemoveState()
-{
-	//TODO - Fix this later
-	/*gameStates.front()->OnExit();
-	delete gameStates.front();
-	gameStates.pop_front();*/
 }
