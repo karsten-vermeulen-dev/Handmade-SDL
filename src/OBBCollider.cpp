@@ -36,7 +36,6 @@ bool OBBCollider::IsColliding(const OBBCollider& secondBox) const
 //======================================================================================================
 bool OBBCollider::IsColliding(const BoxCollider& secondBox) const
 {
-	//TODO - Fix this
 	/*OBBCollider collider;
 
 	collider.SetScale(secondBox.GetScale());
@@ -57,9 +56,6 @@ void OBBCollider::Update()
 	//We have to reset them to their defaults before rotating them
 	upAxis = Vector<float>::Up;
 	rightAxis = Vector<float>::Right;
-
-	//TODO - Fix this. We need to rotate the up/right vectors around Z
-	//TODO - Do we use a simple 2x2 matrix here or find some way to rotate vector?
 
 	//Transform the up and right vectors based on how the OBBCollider is rotated 
 	/*upAxis = rotation.GetMatrix() * upAxis * halfDimension.y;

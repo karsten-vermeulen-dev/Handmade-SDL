@@ -11,7 +11,6 @@ public:
 	static Vector<double> GravityForce(double mass_1,
 		double mass_2, const Vector<double>& distance);
 
-	//TODO - Fix this for 2D version
 	/*static Vector<double> TorqueForce(const Vector<double>& force,
 		const Vector<double>& contactPosition, const Vector<double>& centreOfMass);*/
 
