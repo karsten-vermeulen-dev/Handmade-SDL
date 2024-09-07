@@ -34,7 +34,6 @@ ${CMAKE_SOURCE_DIR}/src/Button.cpp
 ${CMAKE_SOURCE_DIR}/src/EndState.cpp
 ${CMAKE_SOURCE_DIR}/src/Game.cpp
 ${CMAKE_SOURCE_DIR}/src/GameObject.cpp
-${CMAKE_SOURCE_DIR}/src/GameState.cpp
 ${CMAKE_SOURCE_DIR}/src/Input.cpp
 ${CMAKE_SOURCE_DIR}/src/Main.cpp
 ${CMAKE_SOURCE_DIR}/src/MenuKey.cpp
@@ -115,7 +114,6 @@ source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/GameObject
 source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/MenuKey.cpp)
 source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Player.cpp)
 source_group("Source Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/EndState.cpp)
-source_group("Source Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/GameState.cpp)
 source_group("Source Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/PlayState.cpp)
 source_group("Source Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/StartState.cpp)
 source_group("Source Files/imgui" FILES ${CMAKE_SOURCE_DIR}/src/imgui/imgui.cpp)
