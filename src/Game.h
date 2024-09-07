@@ -4,6 +4,9 @@
 #include <string>
 #include "GameState.h"
 
+//This class implements the Game State Pattern as per this tutorial:
+//https://gameprogrammingpatterns.com/state.html
+
 class Game
 {
 

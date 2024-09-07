@@ -23,6 +23,7 @@ public:
 		const std::string& filename = "",
 		bool hasClickState = false,
 		int rowIndex = 1);
+	
 	virtual ~Button() {}
 
 	virtual void Update(int deltaTime) override;

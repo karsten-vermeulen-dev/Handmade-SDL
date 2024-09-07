@@ -42,14 +42,14 @@ bool StartState::Render()
 	menu->Render();
 
 	//==============================================================================
-	//ImGUI UI (WIP)
+	//ImGUI UI
 	//==============================================================================
 
 	ImGui_ImplSDLRenderer2_NewFrame();
 	ImGui_ImplSDL2_NewFrame();
 	ImGui::NewFrame();
 	
-	//...
+	//Add UI code here...
 
 	ImGui::Render();
 	ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), Screen::Instance()->GetRenderer());
