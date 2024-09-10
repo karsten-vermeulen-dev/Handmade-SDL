@@ -40,8 +40,6 @@ Below is another table detailing the folders within the CMake build folder after
 
 **Note**: If the _.vs_, _Debug_, _Release_, _Handmade.dir_, and/or _x64_ folders become too cluttered, you can safely delete them. They will automatically regenerate when re-compiling the project in Visual Studio.
 
-<br> 
-
 ---
 
 <br>
