@@ -4,7 +4,7 @@ _Handmade SDL_ is a humble C++ game engine framework wrapped around the popular 
 
 # Building the source
 
-Whether you clone the repo or download the ZIP, you must generate a working project and environment out of the raw source code and library files provided. To do this, it is advised to download and use [CMake](https://cmake.org). I prefer to use the CMake GUI app, however, many programmers enjoy the terminal. Whichever method you choose, the CMake source folder is the one you see up above, with the CMakeLists.txt file within. Generate the project files into the destination folder of your choice, even if that is the same folder as the source folder. Generate files for the IDE of your choosing, however, my preference, and hence recommendation, is to use [Visual Studio Community 2022](https://visualstudio.microsoft.com/downloads). 
+Whether you clone the repo or directly download the source code, you must generate a working project and environment out of the raw source code and library files provided. To do this, it is advised to download and use [CMake](https://cmake.org). I prefer to use the CMake GUI app, however, many programmers enjoy the terminal. Whichever method you choose, the CMake source folder is the one you see up above, with the CMakeLists.txt file within. Generate the project files into the destination folder of your choice, even if that is the same folder as the source folder. Generate files for the IDE of your choosing, however, my preference, and hence recommendation, is to use [Visual Studio Community 2022](https://visualstudio.microsoft.com/downloads). 
 
 # Compiling and running the engine
 
