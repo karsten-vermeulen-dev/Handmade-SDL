@@ -20,7 +20,7 @@ Below is a table detailing the folders within the repo before building them with
 
 | Folder        | Use           | 
 | ------------- | --------------| 
-| .git          | All the files and folders that manage and track this repository are kept here. It's usually a hidden folder, and if you spot it, never delete it!  |
+| .git          | All the files and folders that manage and track this repository are kept here. It's usually a hidden folder, and only appears if you've cloned or forked the repo, but if you spot it, never delete it!  |
 | Assets        | Stores all the fonts, sounds, music, image backgrounds, and sprite sheets that you can use to build your first demo. As you build your game, you can add your own assets into the respective sub-folders within this folder. This folder is copied over by CMake if your source and build folders are different |
 | bin           | Keeps the SDL 2.0 .dll files, which are copied to the appropriate build folders when compiling the engine      |  
 | lib           | Stores the SDL 2.0 .lib files, which CMake automatically links to the project when generating the solution files      |   
