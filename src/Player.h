@@ -25,11 +25,11 @@ private:
 	BoxCollider bound;
 	Sound footsteps;
 
-	Texture idle;
-	Texture walk;
+	Texture idleAnimation;
+	Texture walkAnimation;
 
 	Vector<int> position;
-	Vector<int> directionWalk;
-	Vector<int> directionStand;
+	Vector<int> walkDirection;
+	Vector<int> standDirection;
 
 };

@@ -4,21 +4,21 @@
 //======================================================================================================
 Player::Player()
 {
-	idle.Load("Characters/Adventure_boy_idle.png", "Idle");
-	idle.SetTexture("Idle");
-	idle.SetDimension(200, 200);
-	idle.SetSourceDimension(10, 1, 5880, 600);
-	idle.IsAnimated(true);
-	idle.IsAnimationLooping(true);
-	idle.SetAnimationVelocity(20.0f);
+	idleAnimation.Load("Characters/Adventure_boy_idle.png", "Idle");
+	idleAnimation.SetTexture("Idle");
+	idleAnimation.SetDimension(200, 200);
+	idleAnimation.SetSourceDimension(10, 1, 5880, 600);
+	idleAnimation.IsAnimated(true);
+	idleAnimation.IsAnimationLooping(true);
+	idleAnimation.SetAnimationVelocity(20.0f);
 
-	walk.Load("Characters/Adventure_boy_run.png", "Walk");
-	walk.SetTexture("Walk");
-	walk.SetDimension(200, 200);
-	walk.SetSourceDimension(10, 1, 5880, 600);
-	walk.IsAnimated(true);
-	walk.IsAnimationLooping(true);
-	walk.SetAnimationVelocity(20.0f);
+	walkAnimation.Load("Characters/Adventure_boy_run.png", "Walk");
+	walkAnimation.SetTexture("Walk");
+	walkAnimation.SetDimension(200, 200);
+	walkAnimation.SetSourceDimension(10, 1, 5880, 600);
+	walkAnimation.IsAnimated(true);
+	walkAnimation.IsAnimationLooping(true);
+	walkAnimation.SetAnimationVelocity(20.0f);
 
 	footsteps.Load("Melee.wav", "Foot");
 	footsteps.SetSound("Foot");
@@ -41,24 +41,24 @@ void Player::Update(int deltaTime)
 	//direction is set for the standing stance and sprite of the player object
 	if (Input::Instance()->IsKeyPressed(HM_KEY_LEFT))
 	{
-		directionStand = directionWalk = Vector<int>::Left;
+		standDirection = walkDirection = Vector<int>::Left;
 	}
 
 	else if (Input::Instance()->IsKeyPressed(HM_KEY_RIGHT))
 	{
-		directionStand = directionWalk = Vector<int>::Right;
+		standDirection = walkDirection = Vector<int>::Right;
 	}
 
 	else
 	{
-		directionWalk = Vector<int>::Zero;
+		walkDirection = Vector<int>::Zero;
 	}
 
-	position += directionWalk * velocity;
+	position += walkDirection * velocity;
 	bound.SetPosition(position.x, position.y);
 
-	idle.Update(deltaTime);
-	walk.Update(deltaTime);
+	idleAnimation.Update(deltaTime);
+	walkAnimation.Update(deltaTime);
 }
 //======================================================================================================
 bool Player::Render()
@@ -69,17 +69,17 @@ bool Player::Render()
 
 	//Check if player is walking or not and render the correct walking cycle
 	//render the correct standing stance sprite based on which way he is facing
-	if (directionWalk.x == 0 && directionWalk.y == 0)
+	if (walkDirection.x == 0 && walkDirection.y == 0)
 	{
-		directionStand.x < 0.0f ? idle.Render(position.x, position.y, 0.0, Texture::Flip::Horizontal)
-			: idle.Render(position.x, position.y);
+		standDirection.x < 0.0f ? idleAnimation.Render(position.x, position.y, 0.0, Texture::Flip::Horizontal)
+			: idleAnimation.Render(position.x, position.y);
 		isWalking = false;
 	}
 
 	else
 	{
-		directionWalk.x < 0.0f ? walk.Render(position.x, position.y, 0.0, Texture::Flip::Horizontal)
-			: walk.Render(position.x, position.y);
+		walkDirection.x < 0.0f ? walkAnimation.Render(position.x, position.y, 0.0, Texture::Flip::Horizontal)
+			: walkAnimation.Render(position.x, position.y);
 
 		if (!isWalking)
 		{
@@ -94,6 +94,6 @@ bool Player::Render()
 Player::~Player()
 {
 	footsteps.Unload("Foot");
-	walk.Unload("Walk");
-	idle.Unload("Idle");
+	walkAnimation.Unload("Walk");
+	idleAnimation.Unload("Idle");
 }
