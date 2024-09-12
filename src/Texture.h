@@ -28,10 +28,10 @@ public:
 	bool IsAnimationLooping();
 	void IsAnimationLooping(bool flag);
 
-	bool SetTexture(const std::string& tag);
 	void SetCel(int column, int row);
-	void SetAnimationVelocity(float velocity);
+	bool SetTexture(const std::string& tag);
 	void SetDimension(int width, int height);
+	void SetAnimationVelocity(float velocity);
 	void SetSourceDimension(int columns, int rows, int width, int height);
 
 	void ResetAnimation();

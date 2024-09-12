@@ -81,12 +81,6 @@ void Texture::SetCel(int column, int row)
 	cel = ((row - 1) * sourceDimension.x) + (column - 1);
 }
 //======================================================================================================
-void Texture::SetAnimationVelocity(float velocity)
-{
-	assert(velocity >= 0.0f);
-	animationVelocity = velocity;
-}
-//======================================================================================================
 bool Texture::SetTexture(const std::string& tag)
 {
 	auto it = textures->find(tag);
@@ -100,6 +94,12 @@ void Texture::SetDimension(int width, int height)
 	assert(width > 0 && height > 0);
 	textureDimension.x = width;
 	textureDimension.y = height;
+}
+//======================================================================================================
+void Texture::SetAnimationVelocity(float velocity)
+{
+	assert(velocity >= 0.0f);
+	animationVelocity = velocity;
 }
 //======================================================================================================
 void Texture::SetSourceDimension(int columns, int rows, int width, int height)
