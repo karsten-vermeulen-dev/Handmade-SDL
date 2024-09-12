@@ -86,7 +86,7 @@ void MenuKey::SetMenuText(Index index, const std::string& text)
 {
 	menuItems[static_cast<int>(index)].SetFont("MenuFont");
 	menuItems[static_cast<int>(index)].SetString(text);
-	menuItems[static_cast<int>(index)].SetSize(static_cast<int>(text.size()) * charDimension.x, charDimension.y);
+	menuItems[static_cast<int>(index)].SetDimension(static_cast<int>(text.size()) * charDimension.x, charDimension.y);
 	menuItems[static_cast<int>(index)].SetColor(inactiveColor.r, inactiveColor.g, inactiveColor.b);
 }
 //======================================================================================================
@@ -161,20 +161,20 @@ bool MenuKey::Render()
 	{
 		if (alignment == Alignment::Centre || alignment == Alignment::Bottom)
 		{
-			menuItems[i].Render(position.x - (menuItems[i].GetSize().x / 2),      //x
-				position.y + (i * menuItems[i].GetSize().y));					  //y
+			menuItems[i].Render(position.x - (menuItems[i].GetDimension().x / 2),      //x
+				position.y + (i * menuItems[i].GetDimension().y));					   //y
 		}
 
 		else if (alignment == Alignment::Left)
 		{
-			menuItems[i].Render(position.x,                                       //x
-				position.y + (i * menuItems[i].GetSize().y));					  //y
+			menuItems[i].Render(position.x,                                            //x
+				position.y + (i * menuItems[i].GetDimension().y));					   //y
 		}
 
 		else if (alignment == Alignment::Right)
 		{
-			menuItems[i].Render(position.x - menuItems[i].GetSize().x,            //x
-				position.y + (i * menuItems[i].GetSize().y));					  //y
+			menuItems[i].Render(position.x - menuItems[i].GetDimension().x,            //x
+				position.y + (i * menuItems[i].GetDimension().y));					   //y
 		}
 	}
 

@@ -70,7 +70,7 @@ Text::Text(const Text& copy)
 	font = copy.font;
 	color = copy.color;
 	string = copy.string;
-	textSize = copy.textSize;
+	dimension = copy.dimension;
 	isDirty = true;
 }
 //======================================================================================================
@@ -79,34 +79,14 @@ Text::~Text()
 	SDL_DestroyTexture(texture);
 }
 //======================================================================================================
-const SDL_Point& Text::GetSize() const
+const SDL_Point& Text::GetDimension() const
 {
-	return textSize;
+	return dimension;
 }
 //======================================================================================================
 const std::string& Text::GetString() const
 {
 	return string;
-}
-//======================================================================================================
-void Text::SetSize(int width, int height)
-{
-	textSize.x = width;
-	textSize.y = height;
-}
-//======================================================================================================
-void Text::SetString(const std::string& string)
-{
-	this->string = string;
-	isDirty = true;
-}
-//======================================================================================================
-void Text::SetColor(Uint8 r, Uint8 g, Uint8 b)
-{
-	color.r = r;
-	color.g = g;
-	color.b = b;
-	isDirty = true;
 }
 //======================================================================================================
 bool Text::SetFont(const std::string& tag)
@@ -118,14 +98,34 @@ bool Text::SetFont(const std::string& tag)
 	return true;
 }
 //======================================================================================================
+void Text::SetColor(Uint8 r, Uint8 g, Uint8 b)
+{
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	isDirty = true;
+}
+//======================================================================================================
+void Text::SetDimension(int width, int height)
+{
+	dimension.x = width;
+	dimension.y = height;
+}
+//======================================================================================================
+void Text::SetString(const std::string& string)
+{
+	this->string = string;
+	isDirty = true;
+}
+//======================================================================================================
 void Text::Render(int x, int y)
 {
 	SDL_Rect dst;
 
 	dst.x = x;
 	dst.y = y;
-	dst.w = textSize.x;
-	dst.h = textSize.y;
+	dst.w = dimension.x;
+	dst.h = dimension.y;
 
 	if (isDirty)
 	{

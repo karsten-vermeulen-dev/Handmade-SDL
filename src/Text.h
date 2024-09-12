@@ -30,12 +30,12 @@ public:
 	Text(const Text& copy);
 	~Text();
 
-	const SDL_Point& GetSize() const;
+	const SDL_Point& GetDimension() const;
 	const std::string& GetString() const;
 
-	void SetSize(int width, int height);
 	bool SetFont(const std::string& tag);
 	void SetColor(Uint8 r, Uint8 g, Uint8 b);
+	void SetDimension(int width, int height);
 	void SetString(const std::string& string);
 
 	void Render(int x = 0, int y = 0);
@@ -46,7 +46,7 @@ private:
 
 	std::string string;
 	bool isDirty{ true };
-	SDL_Point textSize{ 0, 0 };
+	SDL_Point dimension{ 0 };
 
 	TTF_Font* font{ nullptr };
 	SDL_Texture* texture{ nullptr };
