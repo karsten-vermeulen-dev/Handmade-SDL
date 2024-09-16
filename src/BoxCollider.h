@@ -6,8 +6,6 @@ class BoxCollider
 
 public:
 
-	BoxCollider GetCollisionRegion(const BoxCollider& secondBox);
-
 	void SetPosition(int x, int y);
 	void SetDimension(int width, int height);
 

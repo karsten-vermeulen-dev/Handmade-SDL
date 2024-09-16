@@ -2,18 +2,6 @@
 #include "BoxCollider.h"
 
 //======================================================================================================
-BoxCollider BoxCollider::GetCollisionRegion(const BoxCollider& secondBox)
-{
-	BoxCollider collider;
-
-	collider.min.x = std::max(min.x, secondBox.min.x);
-	collider.min.y = std::max(min.y, secondBox.min.y);
-	collider.max.x = std::min(max.x, secondBox.max.x);
-	collider.max.y = std::max(max.y, secondBox.max.y);
-
-	return collider;
-}
-//======================================================================================================
 void BoxCollider::SetPosition(int x, int y)
 {
 	position.x = x;
