@@ -14,11 +14,8 @@ ${CMAKE_SOURCE_DIR}/src/GameState.h
 ${CMAKE_SOURCE_DIR}/src/Input.h
 ${CMAKE_SOURCE_DIR}/src/MenuKey.h
 ${CMAKE_SOURCE_DIR}/src/Music.h
-${CMAKE_SOURCE_DIR}/src/OBBCollider.h
-${CMAKE_SOURCE_DIR}/src/Plane.h
 ${CMAKE_SOURCE_DIR}/src/Player.h
 ${CMAKE_SOURCE_DIR}/src/PlayState.h
-${CMAKE_SOURCE_DIR}/src/RigidBody.h
 ${CMAKE_SOURCE_DIR}/src/Screen.h
 ${CMAKE_SOURCE_DIR}/src/Sound.h
 ${CMAKE_SOURCE_DIR}/src/SphereCollider.h
@@ -38,11 +35,8 @@ ${CMAKE_SOURCE_DIR}/src/Input.cpp
 ${CMAKE_SOURCE_DIR}/src/Main.cpp
 ${CMAKE_SOURCE_DIR}/src/MenuKey.cpp
 ${CMAKE_SOURCE_DIR}/src/Music.cpp
-${CMAKE_SOURCE_DIR}/src/OBBCollider.cpp
-${CMAKE_SOURCE_DIR}/src/Plane.cpp
 ${CMAKE_SOURCE_DIR}/src/Player.cpp
 ${CMAKE_SOURCE_DIR}/src/PlayState.cpp
-${CMAKE_SOURCE_DIR}/src/RigidBody.cpp
 ${CMAKE_SOURCE_DIR}/src/Screen.cpp
 ${CMAKE_SOURCE_DIR}/src/Sound.cpp
 ${CMAKE_SOURCE_DIR}/src/SphereCollider.cpp
@@ -70,16 +64,13 @@ ${CMAKE_SOURCE_DIR}/lib/SDL2_image.lib
 ${CMAKE_SOURCE_DIR}/lib/SDL2_mixer.lib 
 ${CMAKE_SOURCE_DIR}/lib/SDL2_ttf.lib)
 
-source_group("Header Files/Components/Core" FILES ${CMAKE_SOURCE_DIR}/src/Music.h)
-source_group("Header Files/Components/Core" FILES ${CMAKE_SOURCE_DIR}/src/Sound.h)
-source_group("Header Files/Components/Core" FILES ${CMAKE_SOURCE_DIR}/src/Text.h)
-source_group("Header Files/Components/Core" FILES ${CMAKE_SOURCE_DIR}/src/Texture.h)
-source_group("Header Files/Components/Physics" FILES ${CMAKE_SOURCE_DIR}/src/BoxCollider.h)
-source_group("Header Files/Components/Physics" FILES ${CMAKE_SOURCE_DIR}/src/OBBCollider.h)
-source_group("Header Files/Components/Physics" FILES ${CMAKE_SOURCE_DIR}/src/Plane.h)
-source_group("Header Files/Components/Physics" FILES ${CMAKE_SOURCE_DIR}/src/RigidBody.h)
-source_group("Header Files/Components/Physics" FILES ${CMAKE_SOURCE_DIR}/src/SphereCollider.h)
-source_group("Header Files/Components/Physics" FILES ${CMAKE_SOURCE_DIR}/src/Vector.h)
+source_group("Header Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/Music.h)
+source_group("Header Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/Sound.h)
+source_group("Header Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/Text.h)
+source_group("Header Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/Texture.h)
+source_group("Header Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/BoxCollider.h)
+source_group("Header Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/SphereCollider.h)
+source_group("Header Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/Vector.h)
 source_group("Header Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Game.h)
 source_group("Header Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Input.h)
 source_group("Header Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Screen.h)
@@ -94,15 +85,12 @@ source_group("Header Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/GameState.h
 source_group("Header Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/PlayState.h)
 source_group("Header Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/StartState.h)
 
-source_group("Source Files/Components/Core" FILES ${CMAKE_SOURCE_DIR}/src/Music.cpp)
-source_group("Source Files/Components/Core" FILES ${CMAKE_SOURCE_DIR}/src/Sound.cpp)
-source_group("Source Files/Components/Core" FILES ${CMAKE_SOURCE_DIR}/src/Text.cpp)
-source_group("Source Files/Components/Core" FILES ${CMAKE_SOURCE_DIR}/src/Texture.cpp)
-source_group("Source Files/Components/Physics" FILES ${CMAKE_SOURCE_DIR}/src/BoxCollider.cpp)
-source_group("Source Files/Components/Physics" FILES ${CMAKE_SOURCE_DIR}/src/OBBCollider.cpp)
-source_group("Source Files/Components/Physics" FILES ${CMAKE_SOURCE_DIR}/src/Plane.cpp)
-source_group("Source Files/Components/Physics" FILES ${CMAKE_SOURCE_DIR}/src/RigidBody.cpp)
-source_group("Source Files/Components/Physics" FILES ${CMAKE_SOURCE_DIR}/src/SphereCollider.cpp)
+source_group("Source Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/Music.cpp)
+source_group("Source Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/Sound.cpp)
+source_group("Source Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/Text.cpp)
+source_group("Source Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/Texture.cpp)
+source_group("Source Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/BoxCollider.cpp)
+source_group("Source Files/Components" FILES ${CMAKE_SOURCE_DIR}/src/SphereCollider.cpp)
 source_group("Source Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Game.cpp)
 source_group("Source Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Input.cpp)
 source_group("Source Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Main.cpp)
