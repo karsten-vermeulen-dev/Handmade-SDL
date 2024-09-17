@@ -1,16 +1,6 @@
 #include "SphereCollider.h"
 
 //======================================================================================================
-int SphereCollider::GetRadius() const
-{
-	return radius;
-}
-//======================================================================================================
-const Vector<int>& SphereCollider::GetPosition() const
-{
-	return position;
-}
-//======================================================================================================
 void SphereCollider::SetRadius(int radius)
 {
 	this->radius = radius;
