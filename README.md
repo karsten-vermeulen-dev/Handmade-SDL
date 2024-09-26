@@ -2,6 +2,10 @@
 
 _Handmade SDL_ is a humble C++ game engine framework wrapped around the popular and cross-platform _Simple DirectMedia Layer_ library. It was designed as a teaching tool, allowing students and aspiring game programmers to make simple 2D sprite-based games while learning intermediate and advanced C++ concepts. The engine can load images, render animations, play audio, display text, handle basic collisions, and integrate UI features via the _ImGui_ library. It currently only supports _Windows 10_, but if you wish to use the engine in a _MacOS_ or _Linux_ environment, you will need to link the appropriate library files.
 
+## The Wiki
+
+Every bit of robust software out there isn't complete without the proper documentation, and my own project is no exception. Check the attached [Wiki](https://github.com/karsten-vermeulen-dev/Handmade-SDL/wiki) for more technical information about the various parts of the game engine.
+
 ## Building the source
 Whether you clone the repo or directly download the source code, you must generate a working project and environment out of the code and library files provided. You are advised to download and use [CMake](https://cmake.org) to do this. You may wish to use the CMake GUI app or build from the terminal, but whichever method you choose, the CMake source folder is the one you see above, with the _CMakeLists.txt_ file within. Generate the project files into the destination folder of your choice, even if that’s the same folder as the source folder. In terms of preferred IDE, mine is the industry-standard [Visual Studio Community 2022](https://visualstudio.microsoft.com/downloads), and with that in mind, the rest of my documentation will reference this IDE only.
 
@@ -34,10 +38,6 @@ Below is another table detailing the folders within the CMake build folder after
 | x64           | More Visual Studio build files with **Debug** and/or **Release** folders within |
 
 **Note**: If the _.vs_, _Debug_, _Release_, _Handmade.dir_, and/or _x64_ folders become too cluttered, you can safely delete them. They will automatically regenerate when re-compiling the project in Visual Studio.
-
-## The Wiki
-
-Every bit of robust software out there isn't complete without the proper documentation, and my own project is no exception. Check the attached [Wiki](https://github.com/karsten-vermeulen-dev/Handmade-SDL/wiki) for more technical information about the various parts of the game engine.
 
 ## Sponsor me
 If the software I create is useful to you, and you'd like for me to create tons more, then consider [sponsoring me](https://github.com/sponsors/karsten-vermeulen-dev).
