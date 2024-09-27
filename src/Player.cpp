@@ -32,6 +32,11 @@ const BoxCollider& Player::GetBound()
 	return bound;
 }
 //======================================================================================================
+void Player::SetVelocity(int velocity)
+{
+	this->velocity = velocity;
+}
+//======================================================================================================
 void Player::Update(int deltaTime)
 {
 	auto keys = Input::Instance()->GetKey();
@@ -83,7 +88,7 @@ bool Player::Render()
 
 		if (!isWalking)
 		{
-			footsteps.Play();
+			//footsteps.Play();
 			isWalking = true;
 		}
 	}

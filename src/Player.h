@@ -15,6 +15,8 @@ public:
 
 	const BoxCollider& GetBound();
 
+	void SetVelocity(int velocity);
+
 	void Update(int deltaTime) override;
 	bool Render() override;
 
