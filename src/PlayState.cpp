@@ -7,6 +7,9 @@
 bool PlayState::OnEnter()
 {
 	image.Load("Backgrounds/City_1920x1080.png", "Aircord.ogg");
+
+	player.SetPosition(100, 800);
+
 	return true;
 }
 //======================================================================================================
@@ -34,6 +37,8 @@ GameState* PlayState::Update(int deltaTime)
 		}
 	}
 
+	player.Update(deltaTime);
+
 	return this;
 }
 //======================================================================================================
@@ -48,6 +53,8 @@ bool PlayState::Render()
 			gameObject.Render();
 		}
 	}
+
+	player.Render();
 
 	return true;
 }

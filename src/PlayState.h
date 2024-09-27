@@ -3,6 +3,7 @@
 #include "Background.h"
 #include "GameObject.h"
 #include "GameState.h"
+#include "Player.h"
 
 class PlayState : public GameState
 {
@@ -20,6 +21,9 @@ public:
 private:
 
 	Background image;
+
+	Player player;
+
 	std::vector<GameObject> gameObjects;
 
 };

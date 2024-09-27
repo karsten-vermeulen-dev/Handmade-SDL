@@ -4,26 +4,26 @@
 //======================================================================================================
 Player::Player()
 {
-	idleAnimation.Load("Characters/Adventure_boy_idle.png", "Idle");
+	idleAnimation.Load("Characters/Adventure girl_idle.png", "Idle");
 	idleAnimation.SetTexture("Idle");
 	idleAnimation.SetDimension(200, 200);
 	idleAnimation.SetSourceDimension(10, 1, 5880, 600);
 	idleAnimation.IsAnimated(true);
 	idleAnimation.IsAnimationLooping(true);
-	idleAnimation.SetAnimationVelocity(20.0f);
+	idleAnimation.SetAnimationVelocity(15.0f);
 
-	walkAnimation.Load("Characters/Adventure_boy_run.png", "Walk");
+	walkAnimation.Load("Characters/Adventure girl_run.png", "Walk");
 	walkAnimation.SetTexture("Walk");
 	walkAnimation.SetDimension(200, 200);
-	walkAnimation.SetSourceDimension(10, 1, 5880, 600);
+	walkAnimation.SetSourceDimension(8, 1, 4704, 600);
 	walkAnimation.IsAnimated(true);
 	walkAnimation.IsAnimationLooping(true);
-	walkAnimation.SetAnimationVelocity(20.0f);
+	walkAnimation.SetAnimationVelocity(15.0f);
 
 	footsteps.Load("Melee.wav", "Foot");
 	footsteps.SetSound("Foot");
 
-	SetPosition(600, 500);
+	//SetPosition(600, 500);
 	bound.SetDimension(125, 250);
 }
 //======================================================================================================
