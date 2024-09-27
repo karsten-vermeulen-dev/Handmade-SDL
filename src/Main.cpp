@@ -5,7 +5,7 @@ int main(int argc, char* args[])
 {
 	Game game(new StartState);
 
-	if (game.Initialize("<insert game name here>", 1280, 720))
+	if (game.Initialize("City Slicker", 1920, 1080, true))
 	{
 		if (!game.Run())
 		{

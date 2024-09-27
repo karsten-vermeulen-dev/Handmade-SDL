@@ -58,7 +58,7 @@ MenuKey::MenuKey(const std::string& filename,
 		menuItems.push_back(Text());
 	}
 
-	Text::Load(filename, "MenuFont");
+	Text::Load(filename, "MenuFont", Text::FontSize::Medium);
 }
 //======================================================================================================
 MenuKey::~MenuKey()
