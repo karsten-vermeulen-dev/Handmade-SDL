@@ -10,14 +10,6 @@ class Player : public GameObject
 
 public:
 
-	enum class State
-	{
-		Idle,
-		Walking,
-		Jumping,
-		Shooting
-	};
-
 	enum class Direction
 	{
 		Left,
@@ -38,20 +30,20 @@ private:
 
 	int velocity{ 5 };
 	int jumpSpeed{ 25 };
+	bool isJumping{ false };
 
-	State state{ State::Idle };
-	Direction direction{ Direction::Right };
 
-	BoxCollider bound;
 	Sound footsteps;
+	BoxCollider bound;
 
 	Texture idleAnimation;
 	Texture walkAnimation;
 	Texture jumpAnimation;
+	Texture* activeAnimation{ nullptr };
 
 	Vector<int> jumpVelocity;
-	Vector<int> gravity{ 0, 1 };
-	
 	Vector<int> walkDirection;
-
+	Vector<int> gravity{ 0, 1 };
+	Direction direction{ Direction::Right };
+	
 };

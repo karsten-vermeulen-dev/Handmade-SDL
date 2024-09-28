@@ -49,72 +49,65 @@ void Player::Update(int deltaTime)
 {
 	auto keys = Input::Instance()->GetKey();
 
-	if (Input::Instance()->IsKeyPressed(HM_KEY_LEFT) && state != State::Jumping)
+	if (Input::Instance()->IsKeyPressed(HM_KEY_LEFT) && !isJumping)
 	{
-		state = State::Walking;
 		direction = Direction::Left;
+		activeAnimation = &walkAnimation;
 		walkDirection = Vector<int>::Left;
 	}
 
-	else if (Input::Instance()->IsKeyPressed(HM_KEY_RIGHT) && state != State::Jumping)
+	else if (Input::Instance()->IsKeyPressed(HM_KEY_RIGHT) && !isJumping)
 	{
-		state = State::Walking;
 		direction = Direction::Right;
+		activeAnimation = &walkAnimation;
 		walkDirection = Vector<int>::Right;
 	}
 
-	else if(state != State::Jumping)
+	else if(!isJumping)
 	{
-		state = State::Idle;
+		activeAnimation = &idleAnimation;
 		walkDirection = Vector<int>::Zero;
 	}
 
 	//TODO: Jump vector should really be 'Up'. This will 
 	//be changed in the Vector class in a future update
-	if (Input::Instance()->IsKeyPressed(HM_KEY_SPACE) && state != State::Jumping)
+	if (Input::Instance()->IsKeyPressed(HM_KEY_SPACE) && !isJumping)
 	{
-		state = State::Jumping;
+		isJumping = true;
+		activeAnimation = &jumpAnimation;
 		jumpVelocity = (Vector<int>::Down * jumpSpeed) + (walkDirection * velocity);
 	}
 
 	//-----------------------------------------------------------------------
 
 	//We are jumping
-	if (state == State::Jumping)
+	if (isJumping)
 	{
 		jumpVelocity += gravity;
 		position += jumpVelocity;
 
+		//When we hit the ground, we reset
 		if (position.y >= 670)
 		{
 			position.y = 670;
-			state = State::Idle;
+			
+			isJumping = false;
 			jumpVelocity = Vector<int>::Zero;
+			
 			jumpAnimation.ResetAnimation();
+			activeAnimation = &idleAnimation;
 		}
 	}
 
+	//We are walking or standing still
 	else
 	{
 		position += walkDirection * velocity;
 	}
 
+	activeAnimation->Update(deltaTime);
 	bound.SetPosition(position.x, position.y);
-
-	if (state == State::Idle)
-	{
-		idleAnimation.Update(deltaTime);
-	}
-
-	else if (state == State::Walking)
-	{
-		walkAnimation.Update(deltaTime);
-	}
-
-	else if (state == State::Jumping)
-	{
-		jumpAnimation.Update(deltaTime);
-	}
+	bound.Update();
 }
 //======================================================================================================
 bool Player::Render()
@@ -129,31 +122,14 @@ bool Player::Render()
 	//	isWalking = true;
 	//}
 
-	Texture* animationToRender{ nullptr };
-
-	if (state == State::Jumping)
-	{
-		animationToRender = &jumpAnimation;
-	}
-
-	else if (state == State::Idle)
-	{
-		animationToRender = &idleAnimation;
-	}
-
-	else
-	{
-		animationToRender = &walkAnimation;
-	}
-
 	if (direction == Direction::Left)
 	{
-		animationToRender->Render(position.x, position.y, 0.0, Texture::Flip::Horizontal);
+		activeAnimation->Render(position.x, position.y, 0.0, Texture::Flip::Horizontal);
 	}
 
 	else
 	{
-		animationToRender->Render(position.x, position.y);
+		activeAnimation->Render(position.x, position.y);
 	}
 
 	return true;
