@@ -11,19 +11,32 @@ bool PlayState::OnEnter()
 	player.SetPosition(10, 670);
 
 	coins.reserve(10);
+	obstacles.reserve(25);
 
 	//If we use 'push_back' here, a copy is made and the old version is destroyed
 	//and when that happens, the Collectible dtor is invoked, unloading the texture
-	coins.emplace_back(Vector<int>( 200, 670 ), Collectible::Type::GoldCoin);
-	coins.emplace_back(Vector<int>( 350, 470 ), Collectible::Type::SilverCoin);
-	coins.emplace_back(Vector<int>( 475, 580 ), Collectible::Type::BronzeCoin);
-	coins.emplace_back(Vector<int>( 600, 650 ), Collectible::Type::GoldCoin);
-	coins.emplace_back(Vector<int>( 850, 550 ), Collectible::Type::BronzeCoin);
-	coins.emplace_back(Vector<int>( 1000, 450 ), Collectible::Type::GoldCoin);
-	coins.emplace_back(Vector<int>( 1250, 650 ), Collectible::Type::BronzeCoin);
-	coins.emplace_back(Vector<int>( 1400, 580 ), Collectible::Type::BronzeCoin);
-	coins.emplace_back(Vector<int>( 1600, 670 ), Collectible::Type::GoldCoin);
-	coins.emplace_back(Vector<int>( 1775, 470 ), Collectible::Type::SilverCoin);
+	coins.emplace_back(Vector<int>( 200, 370 ), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>( 350, 370 ), Collectible::Type::SilverCoin);
+	coins.emplace_back(Vector<int>( 475, 380 ), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>( 600, 350 ), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>( 850, 350 ), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>( 1000, 350 ), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>( 1250, 350 ), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>( 1400, 380 ), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>( 1600, 370 ), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>( 1775, 370 ), Collectible::Type::SilverCoin);
+	
+	//TODO - If the slab width is 150 px, why is it only 100 
+	//pixels apart and sitting right next to the other stone?  
+	obstacles.emplace_back(Vector<int>( 350, 745 ), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>( 450, 745 ), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>( 550, 745 ), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>( 550, 647 ), Obstacle::Type::Stone);
+	
+	obstacles.emplace_back(Vector<int>( 650, 745 ), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>( 650, 647 ), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>( 650, 549 ), Obstacle::Type::Stone);
+
 
 	message.Load("Impact.ttf", "Impact", Text::FontSize::Large);
 	message.SetDimension(1100, 40);
@@ -70,7 +83,24 @@ GameState* PlayState::Update(int deltaTime)
 		}
 	}
 
-	
+	bool isColliding{ false };
+
+	for (auto& obstacle : obstacles)
+	{
+		obstacle.Update(deltaTime);
+
+		if (player.GetBound().IsColliding(obstacle.GetBound()))
+		{
+			player.Stop();
+			isColliding = true;
+			break;
+		}
+	}
+
+	if (!isColliding)
+	{
+		player.Start();
+	}
 
 	return this;
 }
@@ -94,6 +124,14 @@ bool PlayState::Render()
 		if (coin.IsVisible())
 		{
 			coin.Render();
+		}
+	}
+
+	for (auto& obstacle : obstacles)
+	{
+		if (obstacle.IsVisible())
+		{
+			obstacle.Render();
 		}
 	}
 

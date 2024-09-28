@@ -4,6 +4,7 @@
 #include "Collectible.h"
 #include "GameObject.h"
 #include "GameState.h"
+#include "Obstacle.h"
 #include "Player.h"
 #include "Text.h"
 
@@ -29,6 +30,8 @@ private:
 	Text message;
 
 	std::vector<Collectible> coins;
+
+	std::vector<Obstacle> obstacles;
 
 	std::vector<GameObject> gameObjects;
 
