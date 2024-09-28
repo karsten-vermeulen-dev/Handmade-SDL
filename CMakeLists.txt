@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(INCLUDE_FILES ${CMAKE_SOURCE_DIR}/src/Background.h 
 ${CMAKE_SOURCE_DIR}/src/BoxCollider.h
+${CMAKE_SOURCE_DIR}/src/Collectible.h
 ${CMAKE_SOURCE_DIR}/src/EndState.h
 ${CMAKE_SOURCE_DIR}/src/Game.h
 ${CMAKE_SOURCE_DIR}/src/GameObject.h
@@ -26,6 +27,7 @@ ${CMAKE_SOURCE_DIR}/src/Vector.h)
 
 set(SOURCE_FILES ${CMAKE_SOURCE_DIR}/src/Background.cpp 
 ${CMAKE_SOURCE_DIR}/src/BoxCollider.cpp
+${CMAKE_SOURCE_DIR}/src/Collectible.cpp
 ${CMAKE_SOURCE_DIR}/src/EndState.cpp
 ${CMAKE_SOURCE_DIR}/src/Game.cpp
 ${CMAKE_SOURCE_DIR}/src/GameObject.cpp
@@ -74,6 +76,7 @@ source_group("Header Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Input.h)
 source_group("Header Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Screen.h)
 source_group("Header Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Utility.h)
 source_group("Header Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Background.h)
+source_group("Header Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Collectible.h)
 source_group("Header Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/GameObject.h)
 source_group("Header Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/MenuKey.h)
 source_group("Header Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Player.h)
@@ -94,6 +97,7 @@ source_group("Source Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Main.cpp)
 source_group("Source Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Screen.cpp)
 source_group("Source Files/Core" FILES ${CMAKE_SOURCE_DIR}/src/Utility.cpp)
 source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Background.cpp)
+source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Collectible.cpp)
 source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/GameObject.cpp)
 source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/MenuKey.cpp)
 source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Player.cpp)
