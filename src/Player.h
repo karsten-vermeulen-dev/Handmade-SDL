@@ -30,7 +30,6 @@ private:
 	Texture idleAnimation;
 	Texture walkAnimation;
 
-	Vector<int> position;
 	Vector<int> walkDirection;
 	Vector<int> standDirection;
 

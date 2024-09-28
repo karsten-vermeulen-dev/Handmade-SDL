@@ -8,7 +8,7 @@ bool PlayState::OnEnter()
 {
 	image.Load("Backgrounds/City_1920x1080.png", "Aircord.ogg");
 
-	player.SetPosition(100, 800);
+	player.SetPosition(100, 670);
 	player.SetVelocity(7);
 
 	return true;
