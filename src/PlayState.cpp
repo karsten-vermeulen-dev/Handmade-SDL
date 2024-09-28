@@ -10,6 +10,8 @@ bool PlayState::OnEnter()
 
 	player.SetPosition(100, 670);
 
+	coin.SetPosition(500, 700);
+
 	return true;
 }
 //======================================================================================================
@@ -39,6 +41,13 @@ GameState* PlayState::Update(int deltaTime)
 
 	player.Update(deltaTime);
 
+	coin.Update(deltaTime);
+
+	if (player.GetBound().IsColliding(coin.GetBound()))
+	{
+		coin.IsVisible(false);
+	}
+
 	return this;
 }
 //======================================================================================================
@@ -55,6 +64,11 @@ bool PlayState::Render()
 	}
 
 	player.Render();
+
+	if (coin.IsVisible())
+	{
+		coin.Render();
+	}
 
 	return true;
 }

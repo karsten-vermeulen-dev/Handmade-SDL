@@ -32,7 +32,7 @@ Player::Player(int runSpeed, int jumpSpeed) : runSpeed(runSpeed), jumpSpeed(jump
 	footsteps.SetSound("Foot");
 
 	//SetPosition(600, 500);
-	bound.SetDimension(125, 250);
+	bound.SetDimension(125, 200);
 }
 //======================================================================================================
 const BoxCollider& Player::GetBound()

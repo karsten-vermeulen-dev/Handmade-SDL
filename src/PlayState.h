@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Background.h"
+#include "Collectible.h"
 #include "GameObject.h"
 #include "GameState.h"
 #include "Player.h"
@@ -23,6 +24,8 @@ private:
 	Background image;
 
 	Player player{ 9, 25 };
+
+	Collectible coin;
 
 	std::vector<GameObject> gameObjects;
 
