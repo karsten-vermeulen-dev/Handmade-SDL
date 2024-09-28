@@ -14,6 +14,7 @@ ${CMAKE_SOURCE_DIR}/src/GameState.h
 ${CMAKE_SOURCE_DIR}/src/Input.h
 ${CMAKE_SOURCE_DIR}/src/MenuKey.h
 ${CMAKE_SOURCE_DIR}/src/Music.h
+${CMAKE_SOURCE_DIR}/src/Obstacle.h
 ${CMAKE_SOURCE_DIR}/src/Player.h
 ${CMAKE_SOURCE_DIR}/src/PlayState.h
 ${CMAKE_SOURCE_DIR}/src/Screen.h
@@ -35,6 +36,7 @@ ${CMAKE_SOURCE_DIR}/src/Input.cpp
 ${CMAKE_SOURCE_DIR}/src/Main.cpp
 ${CMAKE_SOURCE_DIR}/src/MenuKey.cpp
 ${CMAKE_SOURCE_DIR}/src/Music.cpp
+${CMAKE_SOURCE_DIR}/src/Obstacle.cpp
 ${CMAKE_SOURCE_DIR}/src/Player.cpp
 ${CMAKE_SOURCE_DIR}/src/PlayState.cpp
 ${CMAKE_SOURCE_DIR}/src/Screen.cpp
@@ -79,6 +81,7 @@ source_group("Header Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Background
 source_group("Header Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Collectible.h)
 source_group("Header Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/GameObject.h)
 source_group("Header Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/MenuKey.h)
+source_group("Header Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Obstacle.h)
 source_group("Header Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Player.h)
 source_group("Header Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/EndState.h)
 source_group("Header Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/GameState.h)
@@ -100,6 +103,7 @@ source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Background
 source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Collectible.cpp)
 source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/GameObject.cpp)
 source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/MenuKey.cpp)
+source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Obstacle.cpp)
 source_group("Source Files/GameObjects" FILES ${CMAKE_SOURCE_DIR}/src/Player.cpp)
 source_group("Source Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/EndState.cpp)
 source_group("Source Files/GameStates" FILES ${CMAKE_SOURCE_DIR}/src/PlayState.cpp)
