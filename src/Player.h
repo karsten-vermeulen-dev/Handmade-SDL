@@ -3,7 +3,6 @@
 #include "GameObject.h"
 #include "Sound.h"
 #include "Texture.h"
-#include "Vector.h"
 
 class Player : public GameObject
 {
@@ -41,6 +40,7 @@ private:
 	Vector<int> runVelocity;
 	Vector<int> jumpVelocity;
 	Vector<int> gravity{ 0, 1 };
+
 	Direction direction{ Direction::Right };
 	
 };
