@@ -12,13 +12,13 @@ Player::Player(int speed) : speed(speed)
 	idleAnimation.IsAnimationLooping(true);
 	idleAnimation.SetAnimationVelocity(15.0f);
 
-	walkAnimation.Load("Characters/Adventure girl_run.png", "Walk");
-	walkAnimation.SetTexture("Walk");
-	walkAnimation.SetDimension(200, 200);
-	walkAnimation.SetSourceDimension(8, 1, 4704, 600);
-	walkAnimation.IsAnimated(true);
-	walkAnimation.IsAnimationLooping(true);
-	walkAnimation.SetAnimationVelocity(15.0f);
+	runAnimation.Load("Characters/Adventure girl_run.png", "Run");
+	runAnimation.SetTexture("Run");
+	runAnimation.SetDimension(200, 200);
+	runAnimation.SetSourceDimension(8, 1, 4704, 600);
+	runAnimation.IsAnimated(true);
+	runAnimation.IsAnimationLooping(true);
+	runAnimation.SetAnimationVelocity(15.0f);
 
 	jumpAnimation.Load("Characters/Adventure girl_jump.png", "Jump");
 	jumpAnimation.SetTexture("Jump");
@@ -47,14 +47,14 @@ void Player::Update(int deltaTime)
 	if (Input::Instance()->IsKeyPressed(HM_KEY_LEFT) && !isJumping)
 	{
 		direction = Direction::Left;
-		activeAnimation = &walkAnimation;
+		activeAnimation = &runAnimation;
 		walkDirection = Vector<int>::Left;
 	}
 
 	else if (Input::Instance()->IsKeyPressed(HM_KEY_RIGHT) && !isJumping)
 	{
 		direction = Direction::Right;
-		activeAnimation = &walkAnimation;
+		activeAnimation = &runAnimation;
 		walkDirection = Vector<int>::Right;
 	}
 
@@ -70,7 +70,7 @@ void Player::Update(int deltaTime)
 	{
 		isJumping = true;
 		activeAnimation = &jumpAnimation;
-		jumpVelocity = (Vector<int>::Down * jumpSpeed) + (walkDirection * velocity);
+		jumpVelocity = (Vector<int>::Down * jumpSpeed) + (walkDirection * speed);
 	}
 
 	//-----------------------------------------------------------------------
@@ -97,7 +97,7 @@ void Player::Update(int deltaTime)
 	//We are walking or standing still
 	else
 	{
-		position += walkDirection * velocity;
+		position += walkDirection * speed;
 	}
 
 	activeAnimation->Update(deltaTime);
@@ -133,6 +133,6 @@ bool Player::Render()
 Player::~Player()
 {
 	footsteps.Unload("Foot");
-	walkAnimation.Unload("Walk");
+	runAnimation.Unload("Run");
 	idleAnimation.Unload("Idle");
 }

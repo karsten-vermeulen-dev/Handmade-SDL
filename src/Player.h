@@ -33,8 +33,8 @@ private:
 	Sound footsteps;
 	BoxCollider bound;
 
+	Texture runAnimation;
 	Texture idleAnimation;
-	Texture walkAnimation;
 	Texture jumpAnimation;
 	Texture* activeAnimation{ nullptr };
 
