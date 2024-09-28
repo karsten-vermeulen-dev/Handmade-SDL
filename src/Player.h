@@ -16,22 +16,19 @@ public:
 		Right
 	};
 
-	Player();
+	Player(int speed = 5);
 	~Player() override;
 
 	const BoxCollider& GetBound();
-
-	void SetVelocity(int velocity);
 
 	void Update(int deltaTime) override;
 	bool Render() override;
 
 private:
 
-	int velocity{ 5 };
+	int speed{ 5 };
 	int jumpSpeed{ 25 };
 	bool isJumping{ false };
-
 
 	Sound footsteps;
 	BoxCollider bound;

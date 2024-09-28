@@ -2,7 +2,7 @@
 #include "Player.h"
 
 //======================================================================================================
-Player::Player()
+Player::Player(int speed) : speed(speed)
 {
 	idleAnimation.Load("Characters/Adventure girl_idle.png", "Idle");
 	idleAnimation.SetTexture("Idle");
@@ -38,11 +38,6 @@ Player::Player()
 const BoxCollider& Player::GetBound()
 {
 	return bound;
-}
-//======================================================================================================
-void Player::SetVelocity(int velocity)
-{
-	this->velocity = velocity;
 }
 //======================================================================================================
 void Player::Update(int deltaTime)

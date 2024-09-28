@@ -22,7 +22,7 @@ private:
 
 	Background image;
 
-	Player player;
+	Player player{ 9 };
 
 	std::vector<GameObject> gameObjects;
 
