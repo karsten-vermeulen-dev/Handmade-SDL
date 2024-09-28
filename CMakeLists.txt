@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(INCLUDE_FILES ${CMAKE_SOURCE_DIR}/src/Background.h 
 ${CMAKE_SOURCE_DIR}/src/BoxCollider.h
-${CMAKE_SOURCE_DIR}/src/Button.h
 ${CMAKE_SOURCE_DIR}/src/EndState.h
 ${CMAKE_SOURCE_DIR}/src/Game.h
 ${CMAKE_SOURCE_DIR}/src/GameObject.h
@@ -27,7 +26,6 @@ ${CMAKE_SOURCE_DIR}/src/Vector.h)
 
 set(SOURCE_FILES ${CMAKE_SOURCE_DIR}/src/Background.cpp 
 ${CMAKE_SOURCE_DIR}/src/BoxCollider.cpp
-${CMAKE_SOURCE_DIR}/src/Button.cpp
 ${CMAKE_SOURCE_DIR}/src/EndState.cpp
 ${CMAKE_SOURCE_DIR}/src/Game.cpp
 ${CMAKE_SOURCE_DIR}/src/GameObject.cpp
