@@ -25,8 +25,8 @@ Player::Player()
 	jumpAnimation.SetDimension(200, 200);
 	jumpAnimation.SetSourceDimension(10, 1, 5880, 600);
 	jumpAnimation.IsAnimated(true);
-	jumpAnimation.IsAnimationLooping(true);
-	jumpAnimation.SetAnimationVelocity(5.0f);
+	jumpAnimation.IsAnimationLooping(false);
+	jumpAnimation.SetAnimationVelocity(6.0f);
 
 	footsteps.Load("Melee.wav", "Foot");
 	footsteps.SetSound("Foot");
