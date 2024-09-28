@@ -25,7 +25,7 @@ private:
 
 	Player player{ 9, 25 };
 
-	Collectible coin;
+	std::vector<Collectible> coins;
 
 	std::vector<GameObject> gameObjects;
 

@@ -10,7 +10,15 @@ bool PlayState::OnEnter()
 
 	player.SetPosition(100, 670);
 
-	coin.SetPosition(500, 700);
+	coins.reserve(15);
+
+	//If we use 'push_back' here, a copy is made and the old version is destroyed
+	//and when that happens, the Collectible dtor is invoked, unloading the texture
+	coins.emplace_back(Vector<int>{ 100, 670 });
+	coins.emplace_back(Vector<int>{ 350, 470 });
+	coins.emplace_back(Vector<int>{ 475, 580 });
+	coins.emplace_back(Vector<int>{ 600, 650 });
+	coins.emplace_back(Vector<int>{ 850, 550 });
 
 	return true;
 }
@@ -41,11 +49,14 @@ GameState* PlayState::Update(int deltaTime)
 
 	player.Update(deltaTime);
 
-	coin.Update(deltaTime);
-
-	if (player.GetBound().IsColliding(coin.GetBound()))
+	for (auto& coin : coins)
 	{
-		coin.IsVisible(false);
+		coin.Update(deltaTime);
+
+		if (player.GetBound().IsColliding(coin.GetBound()))
+		{
+			coin.IsVisible(false);
+		}
 	}
 
 	return this;
@@ -65,9 +76,12 @@ bool PlayState::Render()
 
 	player.Render();
 
-	if (coin.IsVisible())
+	for (auto& coin : coins)
 	{
-		coin.Render();
+		if (coin.IsVisible())
+		{
+			coin.Render();
+		}
 	}
 
 	return true;
@@ -76,4 +90,5 @@ bool PlayState::Render()
 void PlayState::OnExit()
 {
 	gameObjects.clear();
+	coins.clear();
 }
