@@ -9,7 +9,7 @@ class Collectible : public GameObject
 
 public:
 
-	Collectible();
+	Collectible(const Vector<int>& position);
 	~Collectible() override;
 
 	const BoxCollider& GetBound();
