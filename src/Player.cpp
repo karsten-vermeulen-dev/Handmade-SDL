@@ -49,34 +49,38 @@ void Player::Update(int deltaTime)
 {
 	auto keys = Input::Instance()->GetKey();
 
-	//Check if left or right key is pressed and set player's direction accordingly
-	//assign standing direction as well so that when no key is pressed the correct
-	//direction is set for the standing stance and sprite of the player object
-	if (Input::Instance()->IsKeyPressed(HM_KEY_LEFT))
+	if (Input::Instance()->IsKeyPressed(HM_KEY_LEFT) && state != State::Jumping)
 	{
-		standDirection = walkDirection = Vector<int>::Left;
+		state = State::Walking;
+		direction = Direction::Left;
+		walkDirection = Vector<int>::Left;
 	}
 
-	else if (Input::Instance()->IsKeyPressed(HM_KEY_RIGHT))
+	else if (Input::Instance()->IsKeyPressed(HM_KEY_RIGHT) && state != State::Jumping)
 	{
-		standDirection = walkDirection = Vector<int>::Right;
+		state = State::Walking;
+		direction = Direction::Right;
+		walkDirection = Vector<int>::Right;
 	}
 
-	else
+	else if(state != State::Jumping)
 	{
+		state = State::Idle;
 		walkDirection = Vector<int>::Zero;
 	}
 
 	//TODO: Jump vector should really be 'Up'. This will 
 	//be changed in the Vector class in a future update
-	if (Input::Instance()->IsKeyPressed(HM_KEY_SPACE) && !isJumping)
+	if (Input::Instance()->IsKeyPressed(HM_KEY_SPACE) && state != State::Jumping)
 	{
-		isJumping = true;
+		state = State::Jumping;
 		jumpVelocity = (Vector<int>::Down * jumpSpeed) + (walkDirection * velocity);
 	}
 
+	//-----------------------------------------------------------------------
+
 	//We are jumping
-	if (isJumping)
+	if (state == State::Jumping)
 	{
 		jumpVelocity += gravity;
 		position += jumpVelocity;
@@ -84,8 +88,9 @@ void Player::Update(int deltaTime)
 		if (position.y >= 670)
 		{
 			position.y = 670;
-			isJumping = false;
+			state = State::Idle;
 			jumpVelocity = Vector<int>::Zero;
+			jumpAnimation.ResetAnimation();
 		}
 	}
 
@@ -96,42 +101,59 @@ void Player::Update(int deltaTime)
 
 	bound.SetPosition(position.x, position.y);
 
-	idleAnimation.Update(deltaTime);
-	walkAnimation.Update(deltaTime);
-	jumpAnimation.Update(deltaTime);
+	if (state == State::Idle)
+	{
+		idleAnimation.Update(deltaTime);
+	}
+
+	else if (state == State::Walking)
+	{
+		walkAnimation.Update(deltaTime);
+	}
+
+	else if (state == State::Jumping)
+	{
+		jumpAnimation.Update(deltaTime);
+	}
 }
 //======================================================================================================
 bool Player::Render()
 {
 	//Flag to be used for playing "footstep" sound effect
 	//We don't want it to play multiple times at once!
-	static bool isWalking = false;
+	//static bool isWalking = false;
 
-	if (isJumping)
+	//if (!isWalking)
+	//{
+	//	//footsteps.Play();
+	//	isWalking = true;
+	//}
+
+	Texture* animationToRender{ nullptr };
+
+	if (state == State::Jumping)
 	{
-		standDirection.x < 0.0f ? jumpAnimation.Render(position.x, position.y, 0.0, Texture::Flip::Horizontal)
-			: jumpAnimation.Render(position.x, position.y);
+		animationToRender = &jumpAnimation;
 	}
 
-	//Check if player is walking or not and render the correct walking cycle
-	//render the correct standing stance sprite based on which way he is facing
-	else if (walkDirection.x == 0 && walkDirection.y == 0)
+	else if (state == State::Idle)
 	{
-		standDirection.x < 0.0f ? idleAnimation.Render(position.x, position.y, 0.0, Texture::Flip::Horizontal)
-			: idleAnimation.Render(position.x, position.y);
-		isWalking = false;
+		animationToRender = &idleAnimation;
 	}
 
 	else
 	{
-		walkDirection.x < 0.0f ? walkAnimation.Render(position.x, position.y, 0.0, Texture::Flip::Horizontal)
-			: walkAnimation.Render(position.x, position.y);
+		animationToRender = &walkAnimation;
+	}
 
-		if (!isWalking)
-		{
-			//footsteps.Play();
-			isWalking = true;
-		}
+	if (direction == Direction::Left)
+	{
+		animationToRender->Render(position.x, position.y, 0.0, Texture::Flip::Horizontal);
+	}
+
+	else
+	{
+		animationToRender->Render(position.x, position.y);
 	}
 
 	return true;
