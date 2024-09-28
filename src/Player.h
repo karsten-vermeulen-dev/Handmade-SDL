@@ -11,12 +11,16 @@ public:
 
 	enum class Direction
 	{
-		Left,
-		Right
+		Left = -1,
+		Right = 1
 	};
 
 	Player(int runSpeed, int jumpSpeed);
 	~Player() override;
+
+	void Start();
+
+	void Stop();
 
 	const BoxCollider& GetBound();
 
@@ -27,6 +31,7 @@ private:
 
 	int runSpeed{ 0 };
 	int jumpSpeed{ 0 };
+	
 	bool isJumping{ false };
 
 	Sound footsteps;

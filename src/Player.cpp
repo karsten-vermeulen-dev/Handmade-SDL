@@ -31,7 +31,7 @@ Player::Player(int runSpeed, int jumpSpeed) : runSpeed(runSpeed), jumpSpeed(jump
 	footsteps.Load("Melee.wav", "Foot");
 	footsteps.SetSound("Foot");
 
-	bound.SetDimension(125, 200);
+	bound.SetDimension(125, 165);
 }
 //======================================================================================================
 const BoxCollider& Player::GetBound()
@@ -135,4 +135,29 @@ Player::~Player()
 	runAnimation.Unload("Run");
 	idleAnimation.Unload("Idle");
 	jumpAnimation.Unload("Jump");
+}
+
+void Player::Start()
+{
+	runSpeed = 9;
+}
+
+void Player::Stop()
+{
+	if (isJumping)
+	{
+		isJumping = false;
+		jumpVelocity = Vector<int>::Zero;
+
+		jumpAnimation.ResetAnimation();
+		activeAnimation = &idleAnimation;
+
+		position.y -= 15;
+	}
+
+	else
+	{
+		runSpeed = 0;
+		position.x -= (int)direction;
+	}
 }
