@@ -16,7 +16,7 @@ public:
 		Right
 	};
 
-	Player(int speed = 5);
+	Player(int runSpeed, int jumpSpeed);
 	~Player() override;
 
 	const BoxCollider& GetBound();
@@ -26,8 +26,8 @@ public:
 
 private:
 
-	int speed{ 5 };
-	int jumpSpeed{ 25 };
+	int runSpeed{ 0 };
+	int jumpSpeed{ 0 };
 	bool isJumping{ false };
 
 	Sound footsteps;
@@ -38,8 +38,8 @@ private:
 	Texture jumpAnimation;
 	Texture* activeAnimation{ nullptr };
 
+	Vector<int> runVelocity;
 	Vector<int> jumpVelocity;
-	Vector<int> walkDirection;
 	Vector<int> gravity{ 0, 1 };
 	Direction direction{ Direction::Right };
 	

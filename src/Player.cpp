@@ -2,7 +2,7 @@
 #include "Player.h"
 
 //======================================================================================================
-Player::Player(int speed) : speed(speed)
+Player::Player(int runSpeed, int jumpSpeed) : runSpeed(runSpeed), jumpSpeed(jumpSpeed)
 {
 	idleAnimation.Load("Characters/Adventure girl_idle.png", "Idle");
 	idleAnimation.SetTexture("Idle");
@@ -48,20 +48,20 @@ void Player::Update(int deltaTime)
 	{
 		direction = Direction::Left;
 		activeAnimation = &runAnimation;
-		walkDirection = Vector<int>::Left;
+		runVelocity = Vector<int>::Left * runSpeed;
 	}
 
 	else if (Input::Instance()->IsKeyPressed(HM_KEY_RIGHT) && !isJumping)
 	{
 		direction = Direction::Right;
 		activeAnimation = &runAnimation;
-		walkDirection = Vector<int>::Right;
+		runVelocity = Vector<int>::Right * runSpeed;
 	}
 
 	else if(!isJumping)
 	{
 		activeAnimation = &idleAnimation;
-		walkDirection = Vector<int>::Zero;
+		runVelocity = Vector<int>::Zero;
 	}
 
 	//TODO: Jump vector should really be 'Up'. This will 
@@ -70,7 +70,7 @@ void Player::Update(int deltaTime)
 	{
 		isJumping = true;
 		activeAnimation = &jumpAnimation;
-		jumpVelocity = (Vector<int>::Down * jumpSpeed) + (walkDirection * speed);
+		jumpVelocity = Vector<int>::Down * jumpSpeed + runVelocity;
 	}
 
 	//-----------------------------------------------------------------------
@@ -94,10 +94,10 @@ void Player::Update(int deltaTime)
 		}
 	}
 
-	//We are walking or standing still
+	//We are running or standing still
 	else
 	{
-		position += walkDirection * speed;
+		position += runVelocity;
 	}
 
 	activeAnimation->Update(deltaTime);
