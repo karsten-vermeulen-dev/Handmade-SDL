@@ -46,14 +46,14 @@ const std::string& GameObject::GetTag() const
 	return tag;
 }
 //======================================================================================================
-const SDL_Point& GameObject::GetPosition() const
-{
-	return position;
-}
-//======================================================================================================
 const SDL_Point& GameObject::GetDimension() const
 {
 	return dimension;
+}
+//======================================================================================================
+const Vector<int>& GameObject::GetPosition() const
+{
+	return position;
 }
 //======================================================================================================
 void GameObject::SetPosition(int x, int y)
@@ -62,10 +62,20 @@ void GameObject::SetPosition(int x, int y)
 	position.y = y;
 }
 //======================================================================================================
+void GameObject::SetPosition(const Vector<int>& position)
+{
+	this->position = position;
+}
+//======================================================================================================
 void GameObject::SetDimension(int x, int y)
 {
 	dimension.x = x;
 	dimension.y = y;
+}
+//======================================================================================================
+void GameObject::SetDimension(const SDL_Point& dimension)
+{
+	this->dimension = dimension;
 }
 //======================================================================================================
 void GameObject::SetTag(const std::string& tag)
