@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "GameState.h"
 #include "Player.h"
+#include "Text.h"
 
 class PlayState : public GameState
 {
@@ -24,6 +25,8 @@ private:
 	Background image;
 
 	Player player{ 9, 25 };
+
+	Text message;
 
 	std::vector<Collectible> coins;
 

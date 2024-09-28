@@ -25,6 +25,12 @@ bool PlayState::OnEnter()
 	coins.emplace_back(Vector<int>( 1600, 670 ), Collectible::Type::GoldCoin);
 	coins.emplace_back(Vector<int>( 1775, 470 ), Collectible::Type::SilverCoin);
 
+	message.Load("Impact.ttf", "Impact", Text::FontSize::Large);
+	message.SetDimension(1100, 40);
+	message.SetFont("Impact");
+	message.SetString("Hello, Lila-Rose, welcome to the big city! Find as many coins as you can. And hurry!");
+	message.SetColor(240, 240, 240);
+
 	return true;
 }
 //======================================================================================================
@@ -64,6 +70,8 @@ GameState* PlayState::Update(int deltaTime)
 		}
 	}
 
+	
+
 	return this;
 }
 //======================================================================================================
@@ -88,6 +96,9 @@ bool PlayState::Render()
 			coin.Render();
 		}
 	}
+
+	message.Render(100, 900);
+
 
 	return true;
 }
