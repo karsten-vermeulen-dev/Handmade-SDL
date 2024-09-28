@@ -135,4 +135,5 @@ Player::~Player()
 	footsteps.Unload("Foot");
 	runAnimation.Unload("Run");
 	idleAnimation.Unload("Idle");
+	jumpAnimation.Unload("Jump");
 }
