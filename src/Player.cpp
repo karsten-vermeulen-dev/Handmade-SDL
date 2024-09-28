@@ -20,6 +20,14 @@ Player::Player()
 	walkAnimation.IsAnimationLooping(true);
 	walkAnimation.SetAnimationVelocity(15.0f);
 
+	jumpAnimation.Load("Characters/Adventure girl_jump.png", "Jump");
+	jumpAnimation.SetTexture("Jump");
+	jumpAnimation.SetDimension(200, 200);
+	jumpAnimation.SetSourceDimension(10, 1, 5880, 600);
+	jumpAnimation.IsAnimated(true);
+	jumpAnimation.IsAnimationLooping(true);
+	jumpAnimation.SetAnimationVelocity(5.0f);
+
 	footsteps.Load("Melee.wav", "Foot");
 	footsteps.SetSound("Foot");
 
@@ -59,11 +67,38 @@ void Player::Update(int deltaTime)
 		walkDirection = Vector<int>::Zero;
 	}
 
-	position += walkDirection * velocity;
+	//TODO: Jump vector should really be 'Up'. This will 
+	//be changed in the Vector class in a future update
+	if (Input::Instance()->IsKeyPressed(HM_KEY_SPACE) && !isJumping)
+	{
+		isJumping = true;
+		jumpVelocity = (Vector<int>::Down * jumpSpeed) + (walkDirection * velocity);
+	}
+
+	//We are jumping
+	if (isJumping)
+	{
+		jumpVelocity += gravity;
+		position += jumpVelocity;
+
+		if (position.y >= 670)
+		{
+			position.y = 670;
+			isJumping = false;
+			jumpVelocity = Vector<int>::Zero;
+		}
+	}
+
+	else
+	{
+		position += walkDirection * velocity;
+	}
+
 	bound.SetPosition(position.x, position.y);
 
 	idleAnimation.Update(deltaTime);
 	walkAnimation.Update(deltaTime);
+	jumpAnimation.Update(deltaTime);
 }
 //======================================================================================================
 bool Player::Render()
@@ -72,9 +107,15 @@ bool Player::Render()
 	//We don't want it to play multiple times at once!
 	static bool isWalking = false;
 
+	if (isJumping)
+	{
+		standDirection.x < 0.0f ? jumpAnimation.Render(position.x, position.y, 0.0, Texture::Flip::Horizontal)
+			: jumpAnimation.Render(position.x, position.y);
+	}
+
 	//Check if player is walking or not and render the correct walking cycle
 	//render the correct standing stance sprite based on which way he is facing
-	if (walkDirection.x == 0 && walkDirection.y == 0)
+	else if (walkDirection.x == 0 && walkDirection.y == 0)
 	{
 		standDirection.x < 0.0f ? idleAnimation.Render(position.x, position.y, 0.0, Texture::Flip::Horizontal)
 			: idleAnimation.Render(position.x, position.y);

@@ -23,13 +23,20 @@ public:
 private:
 
 	int velocity{ 5 };
+	int jumpSpeed{ 25 };
+
+	bool isJumping{ false };
 
 	BoxCollider bound;
 	Sound footsteps;
 
 	Texture idleAnimation;
 	Texture walkAnimation;
+	Texture jumpAnimation;
 
+	Vector<int> jumpVelocity;
+	Vector<int> gravity{ 0, 1 };
+	
 	Vector<int> walkDirection;
 	Vector<int> standDirection;
 
