@@ -8,17 +8,22 @@ bool PlayState::OnEnter()
 {
 	image.Load("Backgrounds/City_1920x1080.png", "Aircord.ogg");
 
-	player.SetPosition(100, 670);
+	player.SetPosition(10, 670);
 
-	coins.reserve(15);
+	coins.reserve(10);
 
 	//If we use 'push_back' here, a copy is made and the old version is destroyed
 	//and when that happens, the Collectible dtor is invoked, unloading the texture
-	coins.emplace_back(Vector<int>{ 100, 670 });
-	coins.emplace_back(Vector<int>{ 350, 470 });
-	coins.emplace_back(Vector<int>{ 475, 580 });
-	coins.emplace_back(Vector<int>{ 600, 650 });
-	coins.emplace_back(Vector<int>{ 850, 550 });
+	coins.emplace_back(Vector<int>( 200, 670 ), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>( 350, 470 ), Collectible::Type::SilverCoin);
+	coins.emplace_back(Vector<int>( 475, 580 ), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>( 600, 650 ), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>( 850, 550 ), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>( 1000, 450 ), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>( 1250, 650 ), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>( 1400, 580 ), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>( 1600, 670 ), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>( 1775, 470 ), Collectible::Type::SilverCoin);
 
 	return true;
 }

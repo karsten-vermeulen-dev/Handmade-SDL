@@ -9,7 +9,14 @@ class Collectible : public GameObject
 
 public:
 
-	Collectible(const Vector<int>& position);
+	enum class Type
+	{
+		GoldCoin,
+		SilverCoin,
+		BronzeCoin
+	};
+
+	Collectible(const Vector<int>& position, Type type);
 	~Collectible() override;
 
 	const BoxCollider& GetBound();
