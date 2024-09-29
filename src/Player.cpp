@@ -6,7 +6,7 @@ Player::Player(int runSpeed, int jumpSpeed) : runSpeed(runSpeed), jumpSpeed(jump
 {
 	idleAnimation.Load("Characters/Adventure girl_idle.png", "Idle");
 	idleAnimation.SetTexture("Idle");
-	idleAnimation.SetDimension(200, 200);
+	idleAnimation.SetDimension(196, 200);
 	idleAnimation.SetSourceDimension(10, 1, 5880, 600);
 	idleAnimation.IsAnimated(true);
 	idleAnimation.IsAnimationLooping(true);
@@ -14,7 +14,7 @@ Player::Player(int runSpeed, int jumpSpeed) : runSpeed(runSpeed), jumpSpeed(jump
 
 	runAnimation.Load("Characters/Adventure girl_run.png", "Run");
 	runAnimation.SetTexture("Run");
-	runAnimation.SetDimension(200, 200);
+	runAnimation.SetDimension(196, 200);
 	runAnimation.SetSourceDimension(8, 1, 4704, 600);
 	runAnimation.IsAnimated(true);
 	runAnimation.IsAnimationLooping(true);
@@ -22,7 +22,7 @@ Player::Player(int runSpeed, int jumpSpeed) : runSpeed(runSpeed), jumpSpeed(jump
 
 	jumpAnimation.Load("Characters/Adventure girl_jump.png", "Jump");
 	jumpAnimation.SetTexture("Jump");
-	jumpAnimation.SetDimension(200, 200);
+	jumpAnimation.SetDimension(196, 200);
 	jumpAnimation.SetSourceDimension(10, 1, 5880, 600);
 	jumpAnimation.IsAnimated(true);
 	jumpAnimation.IsAnimationLooping(false);
@@ -31,6 +31,8 @@ Player::Player(int runSpeed, int jumpSpeed) : runSpeed(runSpeed), jumpSpeed(jump
 	footsteps.Load("Melee.wav", "Foot");
 	footsteps.SetSound("Foot");
 
+	//The collider dimension is slightly smaller than the actual sprite
+	//because the raw image has a gap on the right and bottom of the image
 	bound.SetDimension(125, 165);
 }
 //======================================================================================================
@@ -100,7 +102,12 @@ void Player::Update(int deltaTime)
 	}
 
 	activeAnimation->Update(deltaTime);
-	bound.SetPosition(position.x, position.y);
+
+	//We offset the collider a little because the raw sprite image has gaps on the 
+	//top and left of it. For this we use the direction the image is facing, which 
+	//has an associated offset value. The reason the values are different based on 
+	//direction is because when flipping the sprite, the sprite 'gaps' also flip 
+	bound.SetPosition(position.x + (int)direction, position.y + 10);
 	bound.Update();
 }
 //======================================================================================================
@@ -125,6 +132,8 @@ bool Player::Render()
 	{
 		activeAnimation->Render(position.x, position.y);
 	}
+
+	bound.Render();
 
 	return true;
 }
@@ -158,6 +167,6 @@ void Player::Stop()
 	else
 	{
 		runSpeed = 0;
-		position.x -= (int)direction;
+		position.x -= runVelocity.x; //(int)direction;
 	}
 }

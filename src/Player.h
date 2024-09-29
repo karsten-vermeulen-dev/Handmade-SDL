@@ -11,8 +11,8 @@ public:
 
 	enum class Direction
 	{
-		Left = -1,
-		Right = 1
+		Left = 55,
+		Right = 15
 	};
 
 	Player(int runSpeed, int jumpSpeed);
