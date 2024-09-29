@@ -46,7 +46,7 @@ const std::string& GameObject::GetTag() const
 	return tag;
 }
 //======================================================================================================
-const SDL_Point& GameObject::GetDimension() const
+const Vector<int>& GameObject::GetDimension() const
 {
 	return dimension;
 }
@@ -73,7 +73,7 @@ void GameObject::SetDimension(int x, int y)
 	dimension.y = y;
 }
 //======================================================================================================
-void GameObject::SetDimension(const SDL_Point& dimension)
+void GameObject::SetDimension(const Vector<int>& dimension)
 {
 	this->dimension = dimension;
 }
