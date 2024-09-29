@@ -15,27 +15,37 @@ bool PlayState::OnEnter()
 
 	//If we use 'push_back' here, a copy is made and the old version is destroyed
 	//and when that happens, the Collectible dtor is invoked, unloading the texture
-	coins.emplace_back(Vector<int>( 200, 370 ), Collectible::Type::GoldCoin);
-	coins.emplace_back(Vector<int>( 350, 370 ), Collectible::Type::SilverCoin);
-	coins.emplace_back(Vector<int>( 475, 380 ), Collectible::Type::BronzeCoin);
-	coins.emplace_back(Vector<int>( 600, 350 ), Collectible::Type::GoldCoin);
-	coins.emplace_back(Vector<int>( 850, 350 ), Collectible::Type::BronzeCoin);
-	coins.emplace_back(Vector<int>( 1000, 350 ), Collectible::Type::GoldCoin);
-	coins.emplace_back(Vector<int>( 1250, 350 ), Collectible::Type::BronzeCoin);
-	coins.emplace_back(Vector<int>( 1400, 380 ), Collectible::Type::BronzeCoin);
-	coins.emplace_back(Vector<int>( 1600, 370 ), Collectible::Type::GoldCoin);
-	coins.emplace_back(Vector<int>( 1775, 370 ), Collectible::Type::SilverCoin);
+	coins.emplace_back(Vector<int>(200, 370), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>(350, 370), Collectible::Type::SilverCoin);
+	coins.emplace_back(Vector<int>(475, 380), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>(600, 350), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>(850, 350), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>(1000, 350), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>(1250, 325), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>(1400, 345), Collectible::Type::BronzeCoin);
+	coins.emplace_back(Vector<int>(1600, 345), Collectible::Type::GoldCoin);
+	coins.emplace_back(Vector<int>(1775, 345), Collectible::Type::SilverCoin);
 	
 	//TODO - If the slab width is 150 px, why is it only 100 
 	//pixels apart and sitting right next to the other stone?  
-	obstacles.emplace_back(Vector<int>( 350, 745 ), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>( 450, 745 ), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>( 550, 745 ), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>( 550, 647 ), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(350, 745), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(450, 745), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(550, 745), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(550, 647), Obstacle::Type::Stone);
 	
-	obstacles.emplace_back(Vector<int>( 650, 745 ), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>( 650, 647 ), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>( 650, 549 ), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(650, 745), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(650, 647), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(650, 549), Obstacle::Type::Stone);
+	
+	obstacles.emplace_back(Vector<int>(750, 549), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(850, 549), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(950, 549), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(1050, 549), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(1150, 549), Obstacle::Type::Stone);
+	
+	obstacles.emplace_back(Vector<int>(1350, 447), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(1450, 447), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(1550, 447), Obstacle::Type::Stone);
 
 
 	message.Load("Impact.ttf", "Impact", Text::FontSize::Large);
