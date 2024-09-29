@@ -20,7 +20,7 @@ public:
 
 	void Start();
 
-	void Stop();
+	void HandleCollision(const GameObject& object);
 
 	const BoxCollider& GetBound();
 

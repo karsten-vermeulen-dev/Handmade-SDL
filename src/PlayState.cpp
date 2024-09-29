@@ -91,7 +91,7 @@ GameState* PlayState::Update(int deltaTime)
 
 		if (player.GetBound().IsColliding(obstacle.GetBound()))
 		{
-			player.Stop();
+			player.HandleCollision(obstacle);
 			isColliding = true;
 			break;
 		}

@@ -34,6 +34,10 @@ Player::Player(int runSpeed, int jumpSpeed) : runSpeed(runSpeed), jumpSpeed(jump
 	//The collider dimension is slightly smaller than the actual sprite
 	//because the raw image has a gap on the right and bottom of the image
 	bound.SetDimension(125, 165);
+
+	//Make sure game object dimension is same 
+	//as collider because the sprite has gaps
+	SetDimension(125, 165);
 }
 //======================================================================================================
 const BoxCollider& Player::GetBound()
@@ -45,8 +49,17 @@ void Player::Update(int deltaTime)
 {
 	auto keys = Input::Instance()->GetKey();
 
+	static bool hasSwapped = false;
+
 	if (Input::Instance()->IsKeyPressed(HM_KEY_LEFT) && !isJumping)
 	{
+		//If we're still facing right, adjust x position because the collider is different 
+		//when flipped and this messes with the collision tests when changing direction
+		if (direction == Direction::Right)
+		{
+			position.x -= 40;
+		}
+
 		direction = Direction::Left;
 		activeAnimation = &runAnimation;
 		runVelocity = Vector<int>::Left * runSpeed;
@@ -54,6 +67,12 @@ void Player::Update(int deltaTime)
 
 	else if (Input::Instance()->IsKeyPressed(HM_KEY_RIGHT) && !isJumping)
 	{
+		//Same as above, just reversed
+		if (direction == Direction::Left)
+		{
+			position.x += 40;
+		}
+
 		direction = Direction::Right;
 		activeAnimation = &runAnimation;
 		runVelocity = Vector<int>::Right * runSpeed;
@@ -133,7 +152,7 @@ bool Player::Render()
 		activeAnimation->Render(position.x, position.y);
 	}
 
-	bound.Render();
+	//bound.Render();
 
 	return true;
 }
@@ -151,7 +170,7 @@ void Player::Start()
 	runSpeed = 9;
 }
 
-void Player::Stop()
+void Player::HandleCollision(const GameObject& object)
 {
 	if (isJumping)
 	{
@@ -161,12 +180,22 @@ void Player::Stop()
 		jumpAnimation.ResetAnimation();
 		activeAnimation = &idleAnimation;
 
-		position.y -= 15;
+		//TODO - '5' can now be a const 'pushback' value
+		position.y = object.GetPosition().y - dimension.y - 5;
 	}
 
 	else
 	{
 		runSpeed = 0;
-		position.x -= runVelocity.x; //(int)direction;
+
+		if (direction == Direction::Left)
+		{
+			position.x += 5;
+		}
+
+		else 
+		{
+			position.x -= 5;
+		}
 	}
 }

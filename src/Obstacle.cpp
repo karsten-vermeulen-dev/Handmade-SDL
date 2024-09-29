@@ -26,8 +26,9 @@ Obstacle::Obstacle(const Vector<int>& position, Type type)
 	//image.IsAnimationLooping(false);
 	//image.SetAnimationVelocity(0.0f);
 
-	//TODO - Not sure why the bound is much smaller, need visualizers
-	bound.SetDimension(85, 106);
+	//Same issue as Player - see comment there
+	bound.SetDimension(100, 95);
+	SetDimension(100, 95);
 
 	this->position = position;
 
@@ -45,13 +46,17 @@ const BoxCollider& Obstacle::GetBound()
 
 void Obstacle::Update(int deltaTime)
 {
-	bound.SetPosition(position.x, position.y);
+
+	//Same issue as Player - see comment there
+	bound.SetPosition(position.x + 25, position.y + 6);
 	bound.Update();
 }
 
 bool Obstacle::Render()
 {
 	image.Render(position.x, position.y);
+
+	//bound.Render();
 
 	return true;
 }
