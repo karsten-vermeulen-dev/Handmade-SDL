@@ -21,7 +21,7 @@ public:
 	const std::string& GetTag() const;
 	const Vector<int>& GetPosition() const;
 	const Vector<int>& GetDimension() const;
-	const SDL_Rect& GetCollisionArea(const BoxCollider& secondBox) const;
+	SDL_Rect GetCollisionArea(const BoxCollider& secondBox) const;
 
 	void SetPosition(int x, int y);
 	void SetPosition(const Vector<int>& position);

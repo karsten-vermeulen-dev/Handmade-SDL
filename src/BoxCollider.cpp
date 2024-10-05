@@ -33,7 +33,7 @@ const Vector<int>& BoxCollider::GetDimension() const
 	return dimension;
 }
 //======================================================================================================
-const SDL_Rect& BoxCollider::GetCollisionArea(const BoxCollider& secondBox) const
+SDL_Rect BoxCollider::GetCollisionArea(const BoxCollider& secondBox) const
 {
 	SDL_Rect collisionArea{ 0 };
 
