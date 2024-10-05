@@ -1,7 +1,49 @@
-#include <SDL.h>
 #include "BoxCollider.h"
 #include "Screen.h"
 
+//======================================================================================================
+BoxCollider::BoxCollider(int x, int y, int width, int height, const std::string& tag)
+{
+	this->tag = tag;
+	SetPosition(x, y);
+	SetDimension(width, height);
+}
+//======================================================================================================
+BoxCollider::BoxCollider(const Vector<int>& position, 
+	                     const Vector<int>& dimension,  
+	                     const std::string& tag)
+{
+	this->tag = tag;
+	SetPosition(position);
+	SetDimension(dimension);
+}
+//======================================================================================================
+const std::string& BoxCollider::GetTag() const
+{
+	return tag;
+}
+//======================================================================================================
+const Vector<int>& BoxCollider::GetPosition() const
+{
+	return position;
+}
+//======================================================================================================
+const Vector<int>& BoxCollider::GetDimension() const
+{
+	return dimension;
+}
+//======================================================================================================
+const SDL_Rect& BoxCollider::GetCollisionArea(const BoxCollider& secondBox) const
+{
+	SDL_Rect collisionArea{ 0 };
+
+	collisionArea.x = std::max(min.x, secondBox.min.x);
+	collisionArea.y = std::max(min.y, secondBox.min.y);
+	collisionArea.w = std::min(max.x, secondBox.max.x) - collisionArea.x;
+	collisionArea.h = std::min(max.y, secondBox.max.y) - collisionArea.y;
+
+	return collisionArea;
+}
 //======================================================================================================
 void BoxCollider::SetPosition(int x, int y)
 {
