@@ -33,7 +33,7 @@ Player::Player(int runSpeed, int jumpSpeed) : runSpeed(runSpeed), jumpSpeed(jump
 
 	//The collider dimension is slightly smaller than the actual sprite
 	//because the raw image has a gap on the right and bottom of the image
-	bound.SetDimension(125, 165);
+	bound.SetDimension(110, 165);
 
 	//Make sure game object dimension is same 
 	//as collider because the sprite has gaps

@@ -85,15 +85,15 @@ bool PlayState::OnEnter()
 	//Triggers
 	//--------------------------------------------------------
 
-	bounds.emplace_back(195, 625, 50, 50, "Trigger");  //-155, -120, 50x50
+	bounds.emplace_back(210, 625, 50, 50, "Trigger");  //-140, -120, 50x50
 
-	bounds.emplace_back(395, 527, 50, 50, "Trigger");
+	bounds.emplace_back(410, 527, 50, 50, "Trigger");
 	
-	bounds.emplace_back(495, 429, 50, 50, "Trigger");
+	bounds.emplace_back(510, 429, 50, 50, "Trigger");
 	
-	bounds.emplace_back(1220, 230, 50, 50, "Trigger");
+	bounds.emplace_back(1235, 230, 50, 50, "Trigger");
 	
-	bounds.emplace_back(1520, 30, 50, 50, "Trigger");
+	bounds.emplace_back(1535, 30, 50, 50, "Trigger");
 
 
 
