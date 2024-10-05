@@ -15,7 +15,7 @@ public:
 
 	enum class FacingDirection
 	{
-		Left = 70,
+		Left = 55,
 		Right = 15
 	};
 
