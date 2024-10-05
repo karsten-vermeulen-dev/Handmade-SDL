@@ -14,6 +14,10 @@ bool PlayState::OnEnter()
 	obstacles.reserve(25);
 	bounds.reserve(10);
 
+	//--------------------------------------------------------
+	//Coins
+	//--------------------------------------------------------
+
 	//If we use 'push_back' here, a copy is made and the old version is destroyed
 	//and when that happens, the Collectible dtor is invoked, unloading the texture
 	coins.emplace_back(Vector<int>(200, 370), Collectible::Type::GoldCoin);
@@ -27,16 +31,21 @@ bool PlayState::OnEnter()
 	coins.emplace_back(Vector<int>(1600, 345), Collectible::Type::GoldCoin);
 	coins.emplace_back(Vector<int>(1775, 345), Collectible::Type::SilverCoin);
 	
-	//TODO - If the slab width is 150 px, why is it only 100 
-	//pixels apart and sitting right next to the other stone?  
+	//--------------------------------------------------------
+	//Obstacles
+	//--------------------------------------------------------
+
+	//First four stone slabs on the floor
 	obstacles.emplace_back(Vector<int>(350, 745), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(450, 745), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(550, 745), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(650, 745), Obstacle::Type::Stone);
 	
+	//Two extra stones one layer up
 	obstacles.emplace_back(Vector<int>(550, 647), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(650, 647), Obstacle::Type::Stone);
 	
+	//Six stone slabs in the middle of the scene
 	obstacles.emplace_back(Vector<int>(650, 549), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(750, 549), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(850, 549), Obstacle::Type::Stone);
@@ -44,17 +53,50 @@ bool PlayState::OnEnter()
 	obstacles.emplace_back(Vector<int>(1050, 549), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(1150, 549), Obstacle::Type::Stone);
 	
-	obstacles.emplace_back(Vector<int>(1350, 447), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>(1450, 447), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>(1550, 447), Obstacle::Type::Stone);
+	//Three extra stone slabs on the right
+	obstacles.emplace_back(Vector<int>(1375, 350), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(1475, 350), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(1575, 350), Obstacle::Type::Stone);
+	
+	//Top right two stones (for treasure?)
+	obstacles.emplace_back(Vector<int>(1675, 150), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(1775, 150), Obstacle::Type::Stone);
 
-	bounds.emplace_back(375, 749, 200, 100, "Bound");
+	//--------------------------------------------------------
+	//Colliders
+	//--------------------------------------------------------
+
+	//Bottom three stones on floor
+	bounds.emplace_back(375, 749, 200, 100, "Bound");  //+25, +4, 100x100 pixels per stone slab
+	
+	//Block of four stones above that
 	bounds.emplace_back(575, 651, 200, 198, "Bound");
-	bounds.emplace_back(675, 553, 600, 100, "Bound");
 
-	bounds.emplace_back(195, 625, 50, 50, "Trigger");
+	//Block of six stone slabs in middle
+	bounds.emplace_back(675, 553, 600, 100, "Bound");
+	
+	//Block of three stones on right
+	bounds.emplace_back(1400, 354, 300, 100, "Bound");
+
+	//Block of two on top-right
+	bounds.emplace_back(1700, 154, 200, 100, "Bound");
+
+	//--------------------------------------------------------
+	//Triggers
+	//--------------------------------------------------------
+
+	bounds.emplace_back(195, 625, 50, 50, "Trigger");  //-155, -120, 50x50
+
 	bounds.emplace_back(395, 527, 50, 50, "Trigger");
+	
 	bounds.emplace_back(495, 429, 50, 50, "Trigger");
+	
+	bounds.emplace_back(1220, 230, 50, 50, "Trigger");
+	
+	bounds.emplace_back(1520, 30, 50, 50, "Trigger");
+
+
+
 
 	message.Load("Impact.ttf", "Impact", Text::FontSize::Large);
 	message.SetDimension(1100, 40);
