@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Background.h"
+#include "BoxCollider.h"
 #include "Collectible.h"
 #include "GameObject.h"
 #include "GameState.h"
@@ -28,6 +29,8 @@ private:
 	Player player{ 9, 25 };
 
 	Text message;
+
+	std::vector<BoxCollider> bounds;
 
 	std::vector<Collectible> coins;
 

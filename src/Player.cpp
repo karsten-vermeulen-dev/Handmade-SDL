@@ -53,28 +53,30 @@ void Player::Update(int deltaTime)
 
 	if (Input::Instance()->IsKeyPressed(HM_KEY_LEFT) && !isJumping)
 	{
-		//If we're still facing right, adjust x position because the collider is different 
-		//when flipped and this messes with the collision tests when changing direction
-		if (direction == Direction::Right)
+		//If we're facing right, adjust the x position 
+		//because the sprite is different when flipped 
+		if (facingDirection == FacingDirection::Right)
 		{
+			runSpeed = 9;
 			position.x -= 40;
 		}
 
-		direction = Direction::Left;
 		activeAnimation = &runAnimation;
+		facingDirection = FacingDirection::Left;
 		runVelocity = Vector<int>::Left * runSpeed;
 	}
 
 	else if (Input::Instance()->IsKeyPressed(HM_KEY_RIGHT) && !isJumping)
 	{
-		//Same as above, just reversed
-		if (direction == Direction::Left)
+		//Same as above, only reversed
+		if (facingDirection == FacingDirection::Left)
 		{
+			runSpeed = 9;
 			position.x += 40;
 		}
 
-		direction = Direction::Right;
 		activeAnimation = &runAnimation;
+		facingDirection = FacingDirection::Right;
 		runVelocity = Vector<int>::Right * runSpeed;
 	}
 
@@ -86,7 +88,7 @@ void Player::Update(int deltaTime)
 
 	//TODO: Jump vector should really be 'Up'. This will 
 	//be changed in the Vector class in a future update
-	if (Input::Instance()->IsKeyPressed(HM_KEY_SPACE) && !isJumping)
+	if (Input::Instance()->IsKeyPressed(HM_KEY_SPACE) && !isJumping )
 	{
 		isJumping = true;
 		activeAnimation = &jumpAnimation;
@@ -107,8 +109,32 @@ void Player::Update(int deltaTime)
 			position.y = 670;
 			
 			isJumping = false;
+
+			//isFalling = false;
+
 			jumpVelocity = Vector<int>::Zero;
 			
+			jumpAnimation.ResetAnimation();
+			activeAnimation = &idleAnimation;
+		}
+	}
+
+	else if (isFalling)
+	{
+		//jumpVelocity += gravity;
+		position += jumpVelocity;
+
+		//When we hit the ground, we reset
+		if (position.y >= 670)
+		{
+			position.y = 670;
+
+			isFalling = false;
+
+			//isFalling = false;
+
+			jumpVelocity = Vector<int>::Zero;
+
 			jumpAnimation.ResetAnimation();
 			activeAnimation = &idleAnimation;
 		}
@@ -118,6 +144,11 @@ void Player::Update(int deltaTime)
 	else
 	{
 		position += runVelocity;
+
+		if (position.y < 670)
+		{
+			//isFalling = true;
+		}
 	}
 
 	activeAnimation->Update(deltaTime);
@@ -126,7 +157,7 @@ void Player::Update(int deltaTime)
 	//top and left of it. For this we use the direction the image is facing, which 
 	//has an associated offset value. The reason the values are different based on 
 	//direction is because when flipping the sprite, the sprite 'gaps' also flip 
-	bound.SetPosition(position.x + (int)direction, position.y + 10);
+	bound.SetPosition(position.x + (int)facingDirection, position.y + 10);
 	bound.Update();
 }
 //======================================================================================================
@@ -142,7 +173,7 @@ bool Player::Render()
 	//	isWalking = true;
 	//}
 
-	if (direction == Direction::Left)
+	if (facingDirection == FacingDirection::Left)
 	{
 		activeAnimation->Render(position.x, position.y, 0.0, Texture::Flip::Horizontal);
 	}
@@ -152,7 +183,7 @@ bool Player::Render()
 		activeAnimation->Render(position.x, position.y);
 	}
 
-	//bound.Render();
+	bound.Render();
 
 	return true;
 }
@@ -165,37 +196,78 @@ Player::~Player()
 	jumpAnimation.Unload("Jump");
 }
 
-void Player::Start()
+void Player::OnCollision(BoxCollider& bound)
 {
-	runSpeed = 9;
-}
+	//Player is in the air and hits the stone slab from the top, which 
+	//means we reset the flags, animations and speeds and push the sprite
+	//image up a little because it may appear 'sunken' into the stone
+	
 
-void Player::HandleCollision(const GameObject& object)
-{
-	if (isJumping)
+	auto collisionArea = this->bound.GetCollisionArea(bound);
+
+	//it's a trigger point
+	if (bound.GetTag() == "Trigger" && !isJumping)
 	{
-		isJumping = false;
-		jumpVelocity = Vector<int>::Zero;
+		isJumping = true;
+		activeAnimation = &jumpAnimation;
+		jumpVelocity = Vector<int>::Up * jumpSpeed;
 
-		jumpAnimation.ResetAnimation();
-		activeAnimation = &idleAnimation;
-
-		//TODO - '5' can now be a const 'pushback' value
-		position.y = object.GetPosition().y - dimension.y - 5;
+		position.x += collisionArea.w;
 	}
 
-	else
+	//jumping on a trigger point does nothing
+	else if (isJumping && bound.GetTag() != "Trigger")
 	{
-		runSpeed = 0;
-
-		if (direction == Direction::Left)
+		//falling down
+		if (position.y < bound.GetPosition().y)
 		{
-			position.x += 5;
+			//runSpeed = 9;
+			isJumping = false;
+
+			//isFalling = false;
+
+			jumpVelocity = Vector<int>::Zero;
+
+			jumpAnimation.ResetAnimation();
+			activeAnimation = &idleAnimation;
+
+			//Move the player upward so that they 
+			//exit the collision intersection area
+			position.y -= collisionArea.h;
+
+			collisionSide = CollisionSide::Top;
 		}
 
-		else 
+		//jumping up
+		else if (position.y > bound.GetPosition().y)
 		{
-			position.x -= 5;
+			runSpeed = 9;
+			collisionSide = CollisionSide::Bottom;
 		}
+	}
+
+	//we're coming from the sides - check for side collisions
+	else if(bound.GetTag() != "Trigger")
+	{
+		if (this->bound.GetPosition().x < bound.GetPosition().x)
+		{
+			runSpeed = 0;
+
+			position.x -= collisionArea.w;
+
+			collisionSide = CollisionSide::Right;
+		}
+
+		else if (this->bound.GetPosition().x > bound.GetPosition().x)
+		{
+
+			runSpeed = 0;
+
+			position.x += collisionArea.w;
+
+			collisionSide = CollisionSide::Left;
+			
+		}
+
 	}
 }

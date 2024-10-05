@@ -12,6 +12,7 @@ bool PlayState::OnEnter()
 
 	coins.reserve(10);
 	obstacles.reserve(25);
+	bounds.reserve(10);
 
 	//If we use 'push_back' here, a copy is made and the old version is destroyed
 	//and when that happens, the Collectible dtor is invoked, unloading the texture
@@ -31,12 +32,12 @@ bool PlayState::OnEnter()
 	obstacles.emplace_back(Vector<int>(350, 745), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(450, 745), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(550, 745), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>(550, 647), Obstacle::Type::Stone);
-	
 	obstacles.emplace_back(Vector<int>(650, 745), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>(650, 647), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>(650, 549), Obstacle::Type::Stone);
 	
+	obstacles.emplace_back(Vector<int>(550, 647), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(650, 647), Obstacle::Type::Stone);
+	
+	obstacles.emplace_back(Vector<int>(650, 549), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(750, 549), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(850, 549), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(950, 549), Obstacle::Type::Stone);
@@ -47,6 +48,13 @@ bool PlayState::OnEnter()
 	obstacles.emplace_back(Vector<int>(1450, 447), Obstacle::Type::Stone);
 	obstacles.emplace_back(Vector<int>(1550, 447), Obstacle::Type::Stone);
 
+	bounds.emplace_back(375, 749, 200, 100, "Bound");
+	bounds.emplace_back(575, 651, 200, 198, "Bound");
+	bounds.emplace_back(675, 553, 600, 100, "Bound");
+
+	bounds.emplace_back(195, 625, 50, 50, "Trigger");
+	bounds.emplace_back(395, 527, 50, 50, "Trigger");
+	bounds.emplace_back(495, 429, 50, 50, "Trigger");
 
 	message.Load("Impact.ttf", "Impact", Text::FontSize::Large);
 	message.SetDimension(1100, 40);
@@ -93,23 +101,14 @@ GameState* PlayState::Update(int deltaTime)
 		}
 	}
 
-	bool isColliding{ false };
-
-	for (auto& obstacle : obstacles)
+	for (auto& bound : bounds)
 	{
-		obstacle.Update(deltaTime);
+		bound.Update();
 
-		if (player.GetBound().IsColliding(obstacle.GetBound()))
+		if (player.GetBound().IsColliding(bound))
 		{
-			player.HandleCollision(obstacle);
-			isColliding = true;
-			break;
+			player.OnCollision(bound);
 		}
-	}
-
-	if (!isColliding)
-	{
-		player.Start();
 	}
 
 	return this;
@@ -143,6 +142,11 @@ bool PlayState::Render()
 		{
 			obstacle.Render();
 		}
+	}
+
+	for (auto& bound : bounds)
+	{
+		bound.Render();
 	}
 
 	message.Render(100, 900);
