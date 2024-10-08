@@ -208,7 +208,7 @@ void Player::OnCollision(BoxCollider& bound)
 		//jumping up
 		else if (position.y > bound.GetPosition().y)
 		{
-			
+			jumpVelocity = Vector<int>::Up;
 		}
 	}
 

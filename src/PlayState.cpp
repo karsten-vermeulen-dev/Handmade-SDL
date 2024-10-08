@@ -54,9 +54,9 @@ bool PlayState::OnEnter()
 	obstacles.emplace_back(Vector<int>(1150, 549), Obstacle::Type::Stone);
 	
 	//Three extra stone slabs on the right
-	obstacles.emplace_back(Vector<int>(1375, 350), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>(1475, 350), Obstacle::Type::Stone);
-	obstacles.emplace_back(Vector<int>(1575, 350), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(1400, 350), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(1500, 350), Obstacle::Type::Stone);
+	obstacles.emplace_back(Vector<int>(1600, 350), Obstacle::Type::Stone);
 	
 	//Top right two stones (for treasure?)
 	obstacles.emplace_back(Vector<int>(1675, 150), Obstacle::Type::Stone);
@@ -76,7 +76,7 @@ bool PlayState::OnEnter()
 	bounds.emplace_back(675, 553, 600, 100, "Bound");
 	
 	//Block of three stones on right
-	bounds.emplace_back(1400, 354, 300, 100, "Bound");
+	bounds.emplace_back(1425, 354, 300, 100, "Bound");
 
 	//Block of two on top-right
 	bounds.emplace_back(1700, 154, 200, 100, "Bound");
@@ -85,17 +85,18 @@ bool PlayState::OnEnter()
 	//Triggers
 	//--------------------------------------------------------
 
-	bounds.emplace_back(210, 625, 50, 50, "Trigger");  //-140, -120, 50x50
+	bounds.emplace_back(210, 625, 50, 50, "Trigger");  //-165, -124, 50x50
 
 	bounds.emplace_back(410, 527, 50, 50, "Trigger");
 	
 	bounds.emplace_back(510, 429, 50, 50, "Trigger");
 	
-	bounds.emplace_back(1235, 230, 50, 50, "Trigger");
+	bounds.emplace_back(1390, 429, 50, 50, "Trigger");
+	
+	bounds.emplace_back(1260, 230, 50, 50, "Trigger");
 	
 	bounds.emplace_back(1535, 30, 50, 50, "Trigger");
-
-
+	
 
 
 	message.Load("Impact.ttf", "Impact", Text::FontSize::Large);
