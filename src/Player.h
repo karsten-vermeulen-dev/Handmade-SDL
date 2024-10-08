@@ -33,10 +33,12 @@ private:
 
 	int runSpeed{ 0 };
 	int jumpSpeed{ 0 };
-	
 	bool isJumping{ false };
-	bool isFalling{ false };
-
+	
+	Vector<int> runVelocity;
+	Vector<int> jumpVelocity;
+	Vector<int> gravity{ 0, 1 };
+	
 	Sound footsteps;
 	BoxCollider bound;
 
@@ -44,10 +46,6 @@ private:
 	Texture idleAnimation;
 	Texture jumpAnimation;
 	Texture* activeAnimation{ nullptr };
-
-	Vector<int> runVelocity;
-	Vector<int> jumpVelocity;
-	Vector<int> gravity{ 0, 1 };
 
 	FacingDirection facingDirection{ FacingDirection::Right };
 	

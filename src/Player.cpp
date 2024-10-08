@@ -110,31 +110,8 @@ void Player::Update(int deltaTime)
 			
 			isJumping = false;
 
-			//isFalling = false;
-
 			jumpVelocity = Vector<int>::Zero;
 			
-			jumpAnimation.ResetAnimation();
-			activeAnimation = &idleAnimation;
-		}
-	}
-
-	else if (isFalling)
-	{
-		//jumpVelocity += gravity;
-		position += jumpVelocity;
-
-		//When we hit the ground, we reset
-		if (position.y >= 670)
-		{
-			position.y = 670;
-
-			isFalling = false;
-
-			//isFalling = false;
-
-			jumpVelocity = Vector<int>::Zero;
-
 			jumpAnimation.ResetAnimation();
 			activeAnimation = &idleAnimation;
 		}
@@ -144,11 +121,6 @@ void Player::Update(int deltaTime)
 	else
 	{
 		position += runVelocity;
-
-		if (position.y < 670)
-		{
-			//isFalling = true;
-		}
 	}
 
 	activeAnimation->Update(deltaTime);
@@ -223,8 +195,6 @@ void Player::OnCollision(BoxCollider& bound)
 		{
 			isJumping = false;
 
-			//isFalling = false;
-
 			jumpVelocity = Vector<int>::Zero;
 
 			jumpAnimation.ResetAnimation();
@@ -254,6 +224,5 @@ void Player::OnCollision(BoxCollider& bound)
 		{
 			position.x += collisionArea.w;
 		}
-
 	}
 }
