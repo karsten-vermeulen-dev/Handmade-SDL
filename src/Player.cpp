@@ -91,8 +91,8 @@ void Player::Update(int deltaTime)
 		runVelocity = Vector<int>::Right * runSpeed;
 	}
 
-	//If player is shooting they can't do it mid-jump
-	else if (Input::Instance()->IsKeyPressed(HM_KEY_E) && !isShooting && !isJumping)
+	//If player decides to shoot, they can't do it mid-jump
+	else if (Input::Instance()->IsKeyPressed(HM_KEY_F) && !isShooting && !isJumping)
 	{
 		isShooting = true;
 		activeAnimation = &shootAnimation;
@@ -130,8 +130,8 @@ void Player::Update(int deltaTime)
 		position += jumpVelocity;
 	}
 
-	//If player is shooting their weapon, start the timer 
-	//and once 1 second has passed, stop their shooting state
+	//If player is shooting their weapon, start the timer and
+	//once one second has passed, stop their shooting state
 	else if (isShooting)
 	{
 		timer += deltaTime;
@@ -140,7 +140,6 @@ void Player::Update(int deltaTime)
 		{
 			timer = 0;
 			isShooting = false;
-			
 			shootAnimation.ResetAnimation();
 			activeAnimation = &idleAnimation;
 		}
@@ -210,10 +209,9 @@ void Player::OnCollision(BoxCollider& bound)
 	if (bound.GetTag() == "Trigger" && !isJumping)
 	{
 		isJumping = true;
+		position.x += collisionArea.w;
 		activeAnimation = &jumpAnimation;
 		jumpVelocity = Vector<int>::Up * jumpSpeed;
-
-		position.x += collisionArea.w;
 	}
 
 	//jumping on a trigger point does nothing
