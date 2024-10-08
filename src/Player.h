@@ -19,16 +19,6 @@ public:
 		Right = 15
 	};
 
-	enum class CollisionSide
-	{
-		Left,
-		Right,
-		Top,
-		Bottom,
-		None
-	};
-
-
 	Player(int runSpeed, int jumpSpeed);
 	~Player() override;
 
@@ -59,7 +49,6 @@ private:
 	Vector<int> jumpVelocity;
 	Vector<int> gravity{ 0, 1 };
 
-	CollisionSide collisionSide{ CollisionSide::None };
 	FacingDirection facingDirection{ FacingDirection::Right };
 	
 };

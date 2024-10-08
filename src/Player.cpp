@@ -233,14 +233,12 @@ void Player::OnCollision(BoxCollider& bound)
 			//Move the player upward so that they 
 			//exit the collision intersection area
 			position.y -= collisionArea.h;
-
-			collisionSide = CollisionSide::Top;
 		}
 
 		//jumping up
 		else if (position.y > bound.GetPosition().y)
 		{
-			collisionSide = CollisionSide::Bottom;
+			
 		}
 	}
 
@@ -250,17 +248,11 @@ void Player::OnCollision(BoxCollider& bound)
 		if (this->bound.GetPosition().x < bound.GetPosition().x)
 		{
 			position.x -= collisionArea.w;
-
-			collisionSide = CollisionSide::Right;
 		}
 
 		else if (this->bound.GetPosition().x > bound.GetPosition().x)
 		{
-
 			position.x += collisionArea.w;
-
-			collisionSide = CollisionSide::Left;
-			
 		}
 
 	}
