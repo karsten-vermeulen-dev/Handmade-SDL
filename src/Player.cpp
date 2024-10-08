@@ -196,7 +196,7 @@ Player::~Player()
 	idleAnimation.Unload("Idle");
 	jumpAnimation.Unload("Jump");
 }
-
+//======================================================================================================
 void Player::OnCollision(BoxCollider& bound)
 {
 	//Player is in the air and hits the stone slab from the top, which 

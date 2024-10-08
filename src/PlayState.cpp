@@ -8,11 +8,10 @@ bool PlayState::OnEnter()
 {
 	image.Load("Backgrounds/City_1920x1080.png", "Aircord.ogg");
 
-	player.SetPosition(10, 674);
-
 	coins.reserve(10);
-	obstacles.reserve(25);
 	bounds.reserve(10);
+	obstacles.reserve(25);
+	player.SetPosition(10, 674);
 
 	//--------------------------------------------------------
 	//Coins
@@ -102,7 +101,7 @@ bool PlayState::OnEnter()
 	
 	bounds.emplace_back(1535, 30, 50, 50, "Trigger");
 	
-
+	//--------------------------------------------------------
 
 	message.Load("Impact.ttf", "Impact", Text::FontSize::Large);
 	message.SetDimension(1100, 40);
@@ -127,14 +126,6 @@ GameState* PlayState::Update(int deltaTime)
 	{
 		image.StopMusic();
 		return new EndState;
-	}
-
-	for (auto& gameObject : gameObjects)
-	{
-		if (gameObject.IsActive())
-		{
-			gameObject.Update(deltaTime);
-		}
 	}
 
 	player.Update(deltaTime);
@@ -166,14 +157,6 @@ bool PlayState::Render()
 {
 	image.Render();
 
-	for (auto& gameObject : gameObjects)
-	{
-		if (gameObject.IsActive() && gameObject.IsVisible())
-		{
-			gameObject.Render();
-		}
-	}
-
 	player.Render();
 
 	for (auto& coin : coins)
@@ -199,12 +182,12 @@ bool PlayState::Render()
 
 	message.Render(100, 900);
 
-
 	return true;
 }
 //======================================================================================================
 void PlayState::OnExit()
 {
-	gameObjects.clear();
+	obstacles.clear();
 	coins.clear();
+	bounds.clear();
 }

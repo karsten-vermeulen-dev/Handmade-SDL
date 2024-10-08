@@ -36,6 +36,4 @@ private:
 
 	std::vector<Obstacle> obstacles;
 
-	std::vector<GameObject> gameObjects;
-
 };
