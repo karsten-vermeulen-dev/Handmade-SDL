@@ -30,6 +30,17 @@ Player::Player(int runSpeed, int jumpSpeed) : runSpeed(runSpeed), jumpSpeed(jump
 	jumpAnimation.IsAnimationLooping(false);
 	jumpAnimation.SetAnimationVelocity(6.0f);
 
+	shootAnimation.Load("Characters/Adventure girl_shoot.png", "Shoot");
+	shootAnimation.SetTexture("Shoot");
+	shootAnimation.SetDimension(196, 200);
+	shootAnimation.SetSourceDimension(3, 1, 1764, 600);
+	shootAnimation.IsAnimated(true);
+	shootAnimation.IsAnimationLooping(true);
+	shootAnimation.SetAnimationVelocity(9.0f);
+
+	//Player is idle by default
+	activeAnimation = &idleAnimation;
+
 	footsteps.Load("Melee.wav", "Foot");
 	footsteps.SetSound("Foot");
 
@@ -49,11 +60,10 @@ const BoxCollider& Player::GetBound()
 //======================================================================================================
 void Player::Update(int deltaTime)
 {
-	auto keys = Input::Instance()->GetKey();
+	static int timer{ 0 };
 
-	static bool hasSwapped = false;
-
-	if (Input::Instance()->IsKeyPressed(HM_KEY_LEFT) && !isJumping)
+	//If player moves left, they musn't be jumping or shooting at the same time
+	if (Input::Instance()->IsKeyPressed(HM_KEY_LEFT) && !isJumping && !isShooting)
 	{
 		//If we're facing right, adjust the x position 
 		//because the sprite is different when flipped 
@@ -67,7 +77,8 @@ void Player::Update(int deltaTime)
 		runVelocity = Vector<int>::Left * runSpeed;
 	}
 
-	else if (Input::Instance()->IsKeyPressed(HM_KEY_RIGHT) && !isJumping)
+	//If player moves right, they also musn't be jumping or shooting at the same time
+	else if (Input::Instance()->IsKeyPressed(HM_KEY_RIGHT) && !isJumping && !isShooting)
 	{
 		//Same as above, only reversed
 		if (facingDirection == FacingDirection::Left)
@@ -80,15 +91,29 @@ void Player::Update(int deltaTime)
 		runVelocity = Vector<int>::Right * runSpeed;
 	}
 
-	else if(!isJumping)
+	//If player is shooting they can't do it mid-jump
+	else if (Input::Instance()->IsKeyPressed(HM_KEY_E) && !isShooting && !isJumping)
+	{
+		isShooting = true;
+		activeAnimation = &shootAnimation;
+	}
+
+	//Otherwise no keys are pressed and provided player is 
+	//not jumping or shooting they remain idle and don't move
+	else if(!isJumping && !isShooting)
 	{
 		activeAnimation = &idleAnimation;
 		runVelocity = Vector<int>::Zero;
 	}
 
+	//-----------------------------------------------------------------------
+	
+	//We use a separate if-statement here and not if-else
+	//because we want to run and jump at the same time
+	
 	//TODO: Jump vector should really be 'Up'. This will 
 	//be changed in the Vector class in a future update
-	if (Input::Instance()->IsKeyPressed(HM_KEY_SPACE) && !isJumping )
+	if (Input::Instance()->IsKeyPressed(HM_KEY_SPACE) && !isJumping)
 	{
 		isJumping = true;
 		activeAnimation = &jumpAnimation;
@@ -97,27 +122,32 @@ void Player::Update(int deltaTime)
 
 	//-----------------------------------------------------------------------
 
-	//We are jumping
+	//If player is in the air, update their position
+	//such that the applied gravity pulls them down
 	if (isJumping)
 	{
 		jumpVelocity += gravity;
 		position += jumpVelocity;
+	}
 
-		//When we hit the ground, we reset
-		if (position.y >= 670)
+	//If player is shooting their weapon, start the timer 
+	//and once 1 second has passed, stop their shooting state
+	else if (isShooting)
+	{
+		timer += deltaTime;
+
+		if (timer > 1000)
 		{
-			position.y = 670;
+			timer = 0;
+			isShooting = false;
 			
-			isJumping = false;
-
-			jumpVelocity = Vector<int>::Zero;
-			
-			jumpAnimation.ResetAnimation();
+			shootAnimation.ResetAnimation();
 			activeAnimation = &idleAnimation;
 		}
 	}
 
-	//We are running or standing still
+	//If player is neither jumping nor shooting, they are either 
+	//running or standing still so update their position either way
 	else
 	{
 		position += runVelocity;
@@ -174,7 +204,6 @@ void Player::OnCollision(BoxCollider& bound)
 	//means we reset the flags, animations and speeds and push the sprite
 	//image up a little because it may appear 'sunken' into the stone
 	
-
 	auto collisionArea = this->bound.GetCollisionArea(bound);
 
 	//it's a trigger point

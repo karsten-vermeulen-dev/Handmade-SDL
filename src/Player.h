@@ -33,7 +33,9 @@ private:
 
 	int runSpeed{ 0 };
 	int jumpSpeed{ 0 };
+	
 	bool isJumping{ false };
+	bool isShooting{ false };
 	
 	Vector<int> runVelocity;
 	Vector<int> jumpVelocity;
@@ -45,6 +47,7 @@ private:
 	Texture runAnimation;
 	Texture idleAnimation;
 	Texture jumpAnimation;
+	Texture shootAnimation;
 	Texture* activeAnimation{ nullptr };
 
 	FacingDirection facingDirection{ FacingDirection::Right };

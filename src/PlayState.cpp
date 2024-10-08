@@ -8,7 +8,7 @@ bool PlayState::OnEnter()
 {
 	image.Load("Backgrounds/City_1920x1080.png", "Aircord.ogg");
 
-	player.SetPosition(10, 670);
+	player.SetPosition(10, 674);
 
 	coins.reserve(10);
 	obstacles.reserve(25);
