@@ -1,6 +1,8 @@
 #include "Input.h"
 #include "Player.h"
 
+#include <iostream>
+
 //======================================================================================================
 Player::Player(int runSpeed, int jumpSpeed) : runSpeed(runSpeed), jumpSpeed(jumpSpeed)
 {
@@ -57,7 +59,6 @@ void Player::Update(int deltaTime)
 		//because the sprite is different when flipped 
 		if (facingDirection == FacingDirection::Right)
 		{
-			runSpeed = 9;
 			position.x -= 40;
 		}
 
@@ -71,7 +72,6 @@ void Player::Update(int deltaTime)
 		//Same as above, only reversed
 		if (facingDirection == FacingDirection::Left)
 		{
-			runSpeed = 9;
 			position.x += 40;
 		}
 
@@ -221,7 +221,6 @@ void Player::OnCollision(BoxCollider& bound)
 		//falling down
 		if (position.y < bound.GetPosition().y)
 		{
-			//runSpeed = 9;
 			isJumping = false;
 
 			//isFalling = false;
@@ -241,7 +240,6 @@ void Player::OnCollision(BoxCollider& bound)
 		//jumping up
 		else if (position.y > bound.GetPosition().y)
 		{
-			runSpeed = 9;
 			collisionSide = CollisionSide::Bottom;
 		}
 	}
@@ -251,8 +249,6 @@ void Player::OnCollision(BoxCollider& bound)
 	{
 		if (this->bound.GetPosition().x < bound.GetPosition().x)
 		{
-			runSpeed = 0;
-
 			position.x -= collisionArea.w;
 
 			collisionSide = CollisionSide::Right;
@@ -260,8 +256,6 @@ void Player::OnCollision(BoxCollider& bound)
 
 		else if (this->bound.GetPosition().x > bound.GetPosition().x)
 		{
-
-			runSpeed = 0;
 
 			position.x += collisionArea.w;
 
