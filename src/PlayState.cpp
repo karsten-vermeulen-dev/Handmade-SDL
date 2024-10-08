@@ -66,6 +66,11 @@ bool PlayState::OnEnter()
 	//Colliders
 	//--------------------------------------------------------
 
+	//Floor and sides 
+	bounds.emplace_back(0, 849, 1920, 100, "Bound");
+	bounds.emplace_back(0, 0, 10, 849, "Bound");
+	bounds.emplace_back(1910, 0, 10, 849, "Bound");
+	
 	//Bottom three stones on floor
 	bounds.emplace_back(375, 749, 200, 100, "Bound");  //+25, +4, 100x100 pixels per stone slab
 	
